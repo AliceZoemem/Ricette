@@ -1,0 +1,251 @@
+/*
+    background:linear-gradient(
+                rgba(0, 0, 0, 0.5),
+    rgba(0, 0, 0, 0.5)
+    ), url('spezie_1.jpg') no-repeat center center fixed;
+*/
+html {
+    background-color: whitesmoke;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    width: 100%;
+}
+
+html, body{
+    margin: 0;
+    padding: 0;
+    font-size: 100%;
+    background-color: whitesmoke;
+}
+body{
+    width: 100%;
+}
+.corpo{
+    text-align: center;
+}
+#corpo_testo{
+    margin-top: 2%;
+}
+#risultato img{
+    width: 30%;
+    height: 20%;
+    /*text-align: left;*/
+    /*float: left;*/
+}
+li{
+    font-size: 120%;
+}
+u{
+    font-size: 100%;
+}
+.ingrediente_inserito{
+    font-size: 700%;
+}
+/*#risultato_ricette{*/
+    /*width: 80%;*/
+    /*text-align: left;*/
+/*}*/
+#single_recipe{
+    margin-top: 11%;
+    width: 80%;
+}
+#single_top{
+    width: 80%;
+}
+#single_top img{
+    float: left;
+    margin-right: 1%;
+}
+#single_top ul{
+    text-align: center;
+    margin-top: 5%;
+}
+img{
+    width:40%;
+    height: 35%;
+}
+#inserisci_ingredienti{
+    background-color: ghostwhite;
+    font-size: 24%;
+    text-align: center;
+    width: auto;
+    color: darkslategrey;
+}
+
+.ui-helper-hidden-accessible{
+    text-align: center;
+    display: none;
+}
+
+@media screen and (min-width: 600px) {
+    .topmenu {
+        overflow: hidden;
+        background-color: #333;
+    }
+    .topmenu li {
+        float: left;
+        display: block;
+        color: #f2f2f2;
+        text-align: center;
+        margin-top: 1.5%;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+    }
+    .topmenu a{
+        color: #FFFFFF;
+        font-size: 18px;
+        text-decoration: none;
+    }
+    .topmenu a:hover {
+        background-color: #ddd;
+        color: black;
+    }
+    .topmenu .icon {
+        display: none;
+    }
+    #label_hidden{
+        visibility: visible;
+    }
+
+
+
+
+    .rightm {
+        position: absolute;
+        overflow: hidden;
+        background-color: #333;
+        /*overflow-y:scroll;*/
+    }
+    .rightm img{
+        width: 100%;
+        height: 100%;
+    }
+    .rightm a {
+        display: block;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+    }
+    .rightm a:hover {
+        background-color: #ddd;
+        color: black;
+    }
+    .rightm .icon {
+        display: none;
+    }
+    #five{
+        display: none;
+    }
+
+}
+
+@media screen and (max-width: 600px) {
+    .topmenu li.disappare:not(:first-child) {display: none;}
+
+    .topmenu a.icon {
+        float: right;
+        display: block;
+    }
+
+    .menulateraledestro{
+        height: 0px;
+    }
+    .rightm a:not(:first-child) {display: none;}
+    .rightm img:not(:first-child) {display: none;}
+    .rightm a.icon {
+        float: right;
+        display: block;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .topmenu.responsive {position: relative;}
+    .topmenu.responsive.icon {
+        position: absolute;
+        right: 0;
+        top: 0;
+
+    }
+    .topmenu.responsive li.disappare {
+        float: none;
+        display: block;
+        text-align: left;
+    }
+    .topmenu.responsive a{
+        color: black;
+        text-decoration: none;
+    }
+    #label_hidden{
+        visibility: hidden;
+        display: none;
+    }
+    #homo{
+        margin-left: 3%;
+    }
+    #enter, #homo, .topmenu a.icon{
+        float: left;
+        color: #000000;
+    }
+
+
+    .rightm.responsive {position: relative;}
+    .rightm.responsive.icon {
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+    .rightm.responsive a {
+        float: right;
+        display: block;
+        text-align: left;
+    }
+
+}
+
+#lista_ing li{
+    list-style-type: none;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+
+.left{
+    float: left;
+}
+.right{
+    float: right;
+}
+.footer {
+
+    position: fixed;
+    bottom: 0;
+    text-align: center;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+
+    background-color: #f5f5f5;
+}
+
+
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+.container_footeriner {
+    width: auto;
+    max-width: 680px;
+    padding: 0 5px;
+}
+.container_footer .text-muted {
+    margin: 10px 0;
+}
+
+#search{
+    text-align: center;
+
+}

@@ -1,0 +1,76 @@
+/*rem fisso*/
+/*vh in base all altezza*/
+
+#rightmenu li{
+    text-align: center;
+}
+
+li{
+    list-style-type: none;
+}
+
+#rightmenu img{
+    width: 80%;
+}
+
+#header li{
+    display: inline-block;
+}
+
+#menu_under{
+    float: left;
+}
+
+.footer{
+    text-align: center;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.container_footer{
+    margin-bottom: 1%;
+}
+
+ /*Responsive*/
+@media screen and (max-width: 600px) {
+    .disappare{
+        display: none;
+        visibility: hidden;
+    }
+}
+@media screen and (min-width: 600px) {
+
+    #rightmenu{
+        display: block;
+        float: right;
+        position: relative;
+        width: 20rem;
+        height: 100%;
+        padding-top: 3%
+    }
+
+    #rightmenu .icon{
+        display: none;
+        visibility: hidden;
+    }
+
+    li img{
+        width: 17rem;
+    }
+
+    li u{
+        font-family: Roboto;
+        /*capitalize*/
+        text-transform: uppercase;
+        font-size: 100%;
+        text-decoration: none;
+    }
+
+    li u:hover {
+        text-decoration: none;
+    }
+}
+/*End Responsive*/
