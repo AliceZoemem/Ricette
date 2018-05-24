@@ -6,12 +6,31 @@ var ingredienti_inseriti = Array();
 var inizio = true;
 var slide = true;
 var i= 0;
+var x= 0;//right menu
 
 $(document).ready(function() {
+    //index
     $( "#ingrediente" ).autocomplete({
         source: globalIngredients
     });
+
+    //right menu
+    $('#hidden_cake').hide();
+
 } );
+
+//right menu
+function OpenRigthMenu(){
+    if(x == 0){
+        $('#menu').show();
+        x = 1;
+    }else
+    {
+        $('#menu').hide();
+        x = 0;
+    }
+}
+
 
 // $(document).ready(function() {
 //     $( "#prova_ids" ).value({

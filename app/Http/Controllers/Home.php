@@ -3,10 +3,13 @@ namespace App\Http\Controllers;
 
 use App\Ingredient;
 use App\Recipe;
+use App\User;
+use Illuminate\Support\Facades\Cookie;
 use function GuzzleHttp\Psr7\str;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rules\In;
 use DOMDocument;
+use Mockery\Exception;
 
 
 class Home extends Controller
@@ -29,6 +32,28 @@ class Home extends Controller
             'ingredientifromdb' => $item_ingredienti]);
     }
 
+//    public function index_ingredients($script){
+//        $item_ingredienti = Ingredient::all();
+//        return view('pag_recipes.index', [
+//            'ingredientifromdb' => $item_ingredienti, 'script', $script]);
+//    }
+
+    public function index_ingredients_auth($script, $id_cookie){
+        $item_ingredienti = Ingredient::all();
+        //60 minuti
+        $cookie = app(CookieFactory::class);
+
+        if (is_null('cookie_user')) {
+            return $cookie;
+        }
+
+        return $cookie->make('cookie_user', $id_cookie, 60);
+
+        return response()->view('pag_recipes.index', [
+            'ingredientifromdb' => $item_ingredienti, 'script' => $script]
+        );
+    }
+
     public function getrecipes(){
         $item_ingredienti = Ingredient::all();
         return view('pag_recipes.index', [
@@ -39,9 +64,7 @@ class Home extends Controller
         $collection = Recipe::all();
         $ricette = $collection->toArray();
 //        dd($ricette);
-        return view('pag_recipes.all',[
-            "ricette"=> $ricette
-        ]);
+        return view('pag_recipes.all',['ricette' => $ricette]);
     }
 
     public function fortwopeople(){
@@ -194,6 +217,83 @@ class Home extends Controller
         fclose($myfile);
 
         return view('/pag_recipes.results');
+    }
+
+    public function signup(){
+        $nome = request('nome');
+        $cognome = request('cognome');
+        $email = request('email');
+        $pw = request('pw');
+        $conf_pw = request('confpw');
+//        dd(request()->all());
+        if($pw != $conf_pw) {
+            $script = "$('#pw').addClass('needs-validation');";
+            $script .= "$('#confpw').addClass('needs-validation');";
+            return view('/pag_recipes.signup', ['script' => $script]);
+        }
+        if($nome != "" && $cognome != "" && $email != "" && $pw != null)
+        {
+            $new_pw = md5($pw);
+            $check_auth = User::where('email', $email)->where('pw', $new_pw)->get();
+            if($check_auth->isEmpty()) {
+                $user = new User();
+                $user->name = strtolower($nome);
+                $user->surname = strtolower($cognome);
+                $user->email = strtolower($email);
+                $user->pw = strtolower($new_pw);
+                $user->save();
+                $script = "$('headerloggedpeople').show();";
+                index_ingredients($script);
+                //                return view('/pag_recipes.index', ['script' => $script]);
+            }else{
+                $script = "$('#pw').addClass('needs-validation');";
+                $script .= "$('#email').addClass('needs-validation');";
+                $script .= "$('#confpw').addClass('needs-validation');";
+                $script .= "alert('Email gia in uso');";
+                return view('/pag_recipes.signup', ['script' => $script]);
+            }
+        }else{
+            $script = "$('#nome').addClass('needs-validation');";
+            $script .= "$('#cognome').addClass('needs-validation');";
+            $script .= "$('#email').addClass('needs-validation');";
+            $script .= "$('#pw').addClass('needs-validation');";
+            $script .= "$('#confpw').addClass('needs-validation');";
+            return view('/pag_recipes.signup', ['script' => $script]);
+        }
+
+    }
+
+    public function logout(){
+
+
+    }
+
+    public function login(){
+        $email = request('email');
+        $pw = request('pw');
+        if($email == "" | $pw == "")
+        {
+            $script = "$('#email').addClass('needs-validation');";
+            $script .= "$('#pw').addClass('needs-validation');";
+            return view('/pag_recipes.login', ['script' => $script]);
+        }
+        $new_pw = md5($pw);
+        $check_auth = User::where('email', $email)->where('pw', $new_pw)->get();
+        if(!$check_auth->isEmpty()) {
+            $id_cookie = $check_auth[0]['id'];
+            $script = "$('#headerloggedpeople').removeClass('hidden'); ";
+            $script .= "$('#header').hide();";
+
+            return $this->index_ingredients_auth($script, $id_cookie);
+//                return Redirect::to('home')->withCookie($cookie);
+
+        }else{
+            $script = "$('#pw').addClass('needs-validation');";
+            $script .= "$('#email').addClass('needs-validation');";
+            $script .= "alert('Email o password invalide');";
+            return view('/pag_recipes.login', ['script' => $script]);
+        }
+
     }
 }
 

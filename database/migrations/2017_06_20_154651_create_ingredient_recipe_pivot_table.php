@@ -19,7 +19,6 @@ class CreateIngredientRecipePivotTable extends Migration
             $table->integer('ingredient_id')->unsigned()->index();
             $table->foreign('ingredient_id')->references('id')->on('ingredients')->onDelete('cascade');
             $table->string('amount');//quantita
-            $table->string('priority')->default(1);
             $table->timestamps();
         });
     }

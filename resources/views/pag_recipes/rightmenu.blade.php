@@ -1,10 +1,9 @@
-<section class="menulateraledestro">
-
+    <section class="menulateraledestro">
     <style>
 
     </style>
     <div id="rightmenu" class="rightm">
-
+        <ul id="menu">
             <li class="disappare">
                 <a href="/singlerecipe/181"><u>le tortillas di farina</u>
                     <img src="http://www.giallozafferano.it/images/ricette/6/631/foto_hd/hd650x433_wm.jpg">
@@ -30,8 +29,8 @@
                     <img src="http://www.giallozafferano.it/images/ricette/36/3603/foto_hd/hd650x433_wm.jpg">
                 </a></br></br>
             </li>
-
-        <a href="javascript:void(0);" style="font-size:30px;" class="icon" onclick="respo()">
+        </ul>
+        <a href="javascript:void(0);" style="font-size:30px;" class="icon" onclick="OpenRigthMenu()">
             <img id="hidden_cake" src="img/recipes1.png" style="width: 12%; height: 7%; float:right; margin-top: 1%;  margin-right: 1%"/>
         </a>
     </div>
@@ -47,12 +46,8 @@
 //            x.className = "topmenu";
 //        }
 //    }
-    $(document).open(function(){
-        alert('ora');
-        $('#hidden_cake').hide();
-    });
     $(document).ready(function(){
-        alert('poi');
+
         $('#hidden_cake').hide();
         if($(window).width() < 960){
             $('#hidden_cake').hide();

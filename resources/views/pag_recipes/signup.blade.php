@@ -4,140 +4,89 @@
 //    if(isset($_COOKIE[$cookie_name]))
 //        header("Location: betaconvenzioni.php");
 ?>
+@extends('master')
 
-<html>
-    <head>
-        <title>Signup - Il mio frigo</title>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+@section('title','Signup - Il mio frigo')
 
-        <meta name="description" content="Recipe site">
-        <meta name="author" content="Albertin Alice">
-        <link href="https://fonts.googleapis.com/css?family=Oswald|Raleway" rel="stylesheet">
-        <link href='{{ asset('/css/style.css') }}' rel='stylesheet' type='text/css'>
-        <link href='{{ asset('/css/bootstrap.css') }}' rel='stylesheet' type='text/css'>
-        <link href='{{ asset('/css/bootstrap.min.css') }}' rel='stylesheet' type='text/css'>
-        <script src="{{ asset('/js/bootstrap.js') }}"></script>
-        <script src="{{ asset('/js/bootstrap.min.js') }}"></script>
-        <style>
+@section('content')
 
-            body{
-                font-family: 'Raleway', sans-serif;
-                padding-top:70px;
-            }
+    <script>
+        $(document).ready(function () {
+            $('#rightmenu').hide();
+            $('#header').hide();
+        });
+    </script>
+    <input id="token_invisible" type="hidden" value="{{ csrf_token() }}">
+    <div class="py-4 text-center">
+        <img class="logo" src="/img/logo2.png" alt="" width="72" height="72">
+        <h2>Registrati</h2>
+        <p class="lead">Registrati anche tu. Entra nella community di Il mio frigo. Enjoy with food!</p>
+    </div>
 
-            .main-form{
-                width:60%;
-                margin-left:20%;
-                text-align:center;
-            }
-            .main-form .form-control{
-                margin-bottom:5px;
-            }
+    <form id="MainForm" class="main-form" action="/trysignup" method="post">
+        {{ csrf_field() }}
+        <input type="text" id="nome" name="nome" class="form-control" id="txtNome" placeholder="Nome*" />
+        <input type="text" id="cognome" name="cognome" class="form-control" id="txtCognome" placeholder="Cognome*" />
+        <input type="text" id="email" name="email" class="form-control" id="txtEmail" placeholder="Email*" />
+        <input type="password" id="pw" name="pw"class="form-control" id="txtPsw" placeholder="Password*" />
+        <input type="password" id="confpw" name="confpw" class="form-control" id="txtConfPsw" placeholder="Conferma Password*" />
+        <br/>
+        <button class="btn btn-primary" name="submit" id="registrato">Registrati</button>
+        <br/><br/>
+        Sei già registrato? <a class="btn btn-link" href="login">Effettua il login</a><br/>
+        <a class="btn btn-primary" href="index">Torna alla home </a>
+    </form>
+    <script>
+        <?php
+            try{echo $script;}catch(Exception $ex){}
+        ?>
+    </script>
+@endsection
+    <script>
 
-            .main-form .logo{
-                max-width:50%;
-                max-height:250px;
-                display:inline-block;
-            }
-
-            .wrong-form-control{
-                border:1px solid #f00;
-            }
-
-            /* ~ ~ Responsiveness ~ ~ */
-            @media all and (max-width: 600px) {
-                .main-form{
-                    width:90%;
-                    margin-left:5%;
-                }
-            }
-
-        </style>
-    </head>
-    <body>
-        <div class="py-4 text-center">
-            <img class="d-block mx-auto mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-            <h2>Registrati</h2>
-            <p class="lead">Registrati anche tu. Entra nella community di Il mio frigo. Enjoy with food!</p>
-        </div>
-
-        <form id="MainForm" class="main-form">
-            <input type="text" class="form-control" id="txtNome" placeholder="Nome*" />
-            <input type="text" class="form-control" id="txtCognome" placeholder="Cognome*" />
-            <input type="text" class="form-control" id="txtEmail" placeholder="Email*" />
-            <input type="password" class="form-control" id="txtPsw" placeholder="Password*" />
-            <input type="text" class="form-control" id="txtIndirizzo" placeholder="Indirizzo*" />
-
-            <select id="ddlRegione" class="form-control">
-                <option value="" disabled selected>Regione</option>
-                <?php
-//                $conn = InstauraConnessione();
-//
-//                /* check connection */
-//                if (mysqli_connect_errno()) {
-//                    printf("Connect failed: %s\n", mysqli_connect_error());
-//                    exit();
-//                }
-//
-//                $query = "SELECT * FROM tbl_regioni ORDER BY Nome ASC";
-//
-//                if ($result = mysqli_query($conn, $query)) {
-//
-//                    /* fetch associative array */
-//                    while ($row = mysqli_fetch_array($result)) {
-//                        $id = $row['Id'];
-//                        $nome = $row['Nome'];
-//
-//                        echo "<option value=$id>$nome</option>";
-//                    }
-//                }
-
-                /* close connection */
-//                AbbattiConnessione($conn);
-                ?>
-            </select>
-
-            <br/>
-            <button class="btn btn-primary" onclick="SignUp();">Registrati</button>
-            <br/><br/>
-            Sei già registrato? <a class="btn btn-link" href="login">Effettua il login</a>
-        </form>
-        </div>
-
-        <!-- Modal delete alert -->
-        <div class="modal fade" id="ModalAlert" tabindex="-1" role="dialog" aria-labelledby="titleLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="titleLabel">Attenzione</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <p id="AlertMessage"></p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <script>
-
-//            $(document).ready(function (){
 //                var input = document.getElementById('txtIndirizzo');
 //                var autocomplete = new google.maps.places.Autocomplete(input);
 //            });
 //
 //            $("#MainForm").submit(function(e){
 //                e.preventDefault();
+//        $('#registrato').click(function () {
+//            if ($('#txtNome').att() == "") {
+//                $('#txtNome').addClass('needs-validation');
+//                return;
+//            }
+//
+//            if ($('#txtCognome').att() == "") {
+//                $('#txtCognome').addClass('needs-validation');
+//                return;
+//            }
+//
+//
+//            if ($('#txtConfPsw').att() == "")
+//                $('#txtConfPsw').addClass('needs-validation');
+//            if ($('#txtPsw').att() == "")
+//                $('#txtPsw').addClass('needs-validation');
+//            if ($('#txtEmail').att() == "")
+//                $('#txtEmail').addClass('needs-validation');
+//            var nome = $('#txtNome').att();
+//            var cognome = $('#txtCognome').att();
+//            var email = $('#txtEmail').att();
+//            var pw = $('#txtPsw').att();
+//            var pw = $('#txtConfPsw').att();
+//
+//            $.post("signup", {
+//                _token: token_page,
+//                'nome': nome,
+//                'cognome': cognome,
+//                'email': email,
+//                'pw': pw
+//            }, function (signup) {
+//
 //            });
+//
+//        });
 
-            function SignUp() {
+//            function SignUp() {
 //                var nome = $('#txtNome').val();
 //                var cognome = $('#txtCognome').val();
 //                var email = $('#txtEmail').val();
@@ -217,22 +166,22 @@
 //                        console.log("Error", request, error);
 //                    }
 //                });
-            }
+//            }
 
 
-            function getCookie(name) {
-                var value = "; " + document.cookie;
-                var parts = value.split("; " + name + "=");
-                if (parts.length == 2) return parts.pop().split(";").shift();
-            }
+//            function getCookie(name) {
+//                var value = "; " + document.cookie;
+//                var parts = value.split("; " + name + "=");
+//                if (parts.length == 2) return parts.pop().split(";").shift();
+//            }
+//
+//
+//            String.prototype.replaceAll = function(str1, str2, ignore)
+//            {
+//                return this.replace(new RegExp(str1.replace(/([\/\,\!\\\^\$\{\}\[\]\(\)\.\*\+\?\|\<\>\-\&])/g,"\\$&"),(ignore?"gi":"g")),(typeof(str2)=="string")?str2.replace(/\$/g,"$$$$"):str2);
+//            }
 
-
-            String.prototype.replaceAll = function(str1, str2, ignore)
-            {
-                return this.replace(new RegExp(str1.replace(/([\/\,\!\\\^\$\{\}\[\]\(\)\.\*\+\?\|\<\>\-\&])/g,"\\$&"),(ignore?"gi":"g")),(typeof(str2)=="string")?str2.replace(/\$/g,"$$$$"):str2);
-            }
-
-        // Example starter JavaScript for disabling form submissions if there are invalid fields
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
 //        (function() {
 //            'use strict';
 //
@@ -252,6 +201,4 @@
 //                });
 //            }, false);
 //        })();
-    </script>
-    </body>
-</html>
+</script>

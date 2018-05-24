@@ -1,86 +1,71 @@
 <?php
-    $cookie_name= "auth_betaconvenzioni";
-    if(isset($_COOKIE[$cookie_name]))
-        header("Location: /homepage.php");
+//    $cookie_name= "auth_betaconvenzioni";
+//    if(isset($_COOKIE[$cookie_name]))
+//        header("Location: /homepage.php");
 ?>
-<html>
-    <head>
+@extends('master')
 
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+@section('title','Login - Il mio frigo')
 
-        <meta name="description" content="Recipe site">
-        <meta name="author" content="Albertin Alice">
-        <link href="https://fonts.googleapis.com/css?family=Oswald|Raleway" rel="stylesheet">
-        <link href='{{ asset('/css/style.css') }}' rel='stylesheet' type='text/css'>
-        <link href='{{ asset('/css/bootstrap.css') }}' rel='stylesheet' type='text/css'>
-        <link href='{{ asset('/css/bootstrap.min.css') }}' rel='stylesheet' type='text/css'>
-        <script src="{{ asset('/js/bootstrap.js') }}"></script>
-        <script src="{{ asset('/js/bootstrap.min.js') }}"></script>
-        <title>Login - Il mio frigo</title>
-        <style>
-            body{
-                /*font-family: 'Oswald', sans-serif;*/
-                font-family: 'Raleway', sans-serif;
-                padding-top:70px;
-            }
+@section('content')
+    <script>
+        $('#rightmenu').hide();
+        $('#header').hide();
+    </script>
+
+    <style>
+        body{
+            /*font-family: 'Oswald', sans-serif;*/
+            font-family: 'Raleway', sans-serif;
+            padding-top:70px;
+        }
+        .main-form{
+            width:60%;
+            margin-left:20%;
+            text-align:center;
+        }
+        .main-form .form-control{
+            margin-bottom:5px;
+        }
+        .main-form .logo{
+            max-width:50%;
+            max-height:250px;
+            display:inline-block;
+        }
+        @media all and (max-width: 600px) {
             .main-form{
-                width:60%;
-                margin-left:20%;
-                text-align:center;
+                width:90%;
+                margin-left:5%;
             }
-            .main-form .form-control{
-                margin-bottom:5px;
-            }
-            .main-form .logo{
-                max-width:50%;
-                max-height:250px;
-                display:inline-block;
-            }
-            @media all and (max-width: 600px) {
-                .main-form{
-                    width:90%;
-                    margin-left:5%;
-                }
-            }
-        </style>
-    </head>
+        }
+    </style>
 
-    <body>
-        <div class="py-4 text-center">
-            <img class="d-block mx-auto mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-            <h2>Registrati</h2>
-            <p class="lead">Registrati anche tu. Entra nella community di Il mio frigo. Enjoy with food!</p>
-        </div>
-        <form method="post" action="login" class="main-form">
-            <input type="text" name="email" class="form-control" placeholder="Email">
-            <input type="password" name="password" class="form-control" placeholder="Password">
-            <br/>
-            <button class="btn btn-primary" onclick="LogIn();">Login</button>
-            <br/><br/>
-            Non sei ancora registrato? <a class="btn btn-link" href="signup">Registrati</a>
-        </form>
 
-        <div class="modal fade" id="ModalAlert" tabindex="-1" role="dialog" aria-labelledby="titleLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="titleLabel">Attenzione</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        Credenziali errate. Riprovare.
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </body>
+    <div class="py-4 text-center">
+        <img class="logo" src="/img/logo2.png" alt="" width="72" height="72">
+        <h2>Accedi</h2>
+        <p class="lead">Accedi anche tu. Entra nella community di Il mio frigo. Enjoy with food!</p>
+    </div>
+
+    <form method="POST" action="/trylog" class="main-form">
+        {{ csrf_field() }}
+        <input id="email" type="text" name="email" class="form-control" placeholder="Email">
+        <input id="pw" type="password" name="pw" class="form-control" placeholder="Password">
+        <br/>
+        <button class="btn btn-primary">Login</button>
+        <br/><br/>
+
+        Non sei ancora registrato? <a class="btn btn-link" href="signup">Registrati</a>
+        <br/>
+        <a class="btn btn-primary" href="index">Torna alla home </a>
+    </form>
+    <script>
+        <?php
+            try{echo $script;}catch(Exception $ex){}
+        ?>
+    </script>
+@endsection
+
     <?php
     //    require_once('functions/functions.php');
     //    $conn = InstauraConnessione();
@@ -110,5 +95,4 @@
     //        }
     //    }
     ?>
-</html>
 

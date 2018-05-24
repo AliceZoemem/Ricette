@@ -19,13 +19,34 @@ $(document).ready(function() {
 //     });
 // } );
 
-
 function start(){
     document.getElementById('inserisci_ingredienti').style.visibility= 'hidden';
     document.getElementById('inserisci_ingredienti').style.display='none';
     document.getElementById('ingrediente').value = 'Aggiungi un ingrediente...';
     $.get("rightmenu" , {_token: token_page}, function (randomrecipes){});
     i = 0;
+}
+
+function LogIn(){
+    alert ('in');
+    if ($('#email').att() == "") {
+        $('#email').addClass('needs-validation');
+        return;
+    }
+
+    if ($('#pw').att() == "") {
+        $('#pw').addClass('needs-validation');
+        return;
+    }
+
+
+    // var token_page = document.getElementById('token_invisible').value;
+    // var email = document.getElementById('email').value;
+    // var pw = document.getElementById('pw').value;
+    // $.post("login", {_token: token_page, 'email': email, 'pw': pw}, function (accesso_consentito) {
+    //     //crea cookie
+    //
+    // });
 }
 
 function aggiungi() {
@@ -126,3 +147,19 @@ function cerca_ricetta(){
 
 }
 
+
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        document.getElementById("scrollup").style.display = "block";
+    } else {
+        document.getElementById("scrollup").style.display = "none";
+    }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+}

@@ -3,12 +3,8 @@
 @section('title','Cerca Ricette - Il mio frigo')
 
 @section('content')
-
     <style>
-        #ingrediente{
-            height: 30px;
-            width: 300px;
-        }
+
         /*#main{*/
             /*background-color: #f1f2f2;*/
             /*background-position: 0 0;*/
@@ -21,25 +17,21 @@
             /*text-align: center;*/
         /*}*/
     </style>
+    <input id="token_invisible" type="hidden" value="{{ csrf_token() }}">
+    <form class="main-form" action="" method="post">
+        <input type="text" class="form-control" id="ingredienti" value="Aggiungi un ingrediente..."/>
+        <button type="submit" class="btn btn-warning" id="button_add" style="font-size: 17px" onclick="aggiungi()">AGGIUNGI</button>
+    </form>
 
-    <script>
-        function inputFocus(i){
-            if(i.value==i.defaultValue){ i.value=""; i.style.color="#000"; }
-        }
-        function inputBlur(i){
-            if(i.value==""){ i.value=i.defaultValue; i.style.color="#888"; }
-        }
+    {{--<section class="corpo" id="main">--}}
+        {{--<div class="aggiungi form-group">--}}
+            {{--<input type="text" class="form-control" id="ingredienti" value="Aggiungi un ingrediente..." onfocus="inputFocus(this)" onblur="inputBlur(this)">--}}
 
-    </script>
+            {{--<input type="text" id="ingredienti" value="Aggiungi un ingrediente..." name="ing" title="Ingrediente" style="color:#888;"--}}
+                    {{--onfocus="inputFocus(this)" onblur="inputBlur(this)" />--}}
 
-    <section class="corpo" id="main">
-        <div class="aggiungi" >
-            {{--<label for="ingrediente">Ingrediente:</label>--}}
-            <input type="text" value="Aggiungi un ingrediente..." name="ing" title="Ingrediente" style="color:#888;" id="ingrediente"
-                    onfocus="inputFocus(this)" onblur="inputBlur(this)" />
-            <input id="token_invisible" type="hidden" value="{{ csrf_token() }}">
-            <button type="add" id="button_add" style="font-size: 17px" onclick="aggiungi()">ADD</button>
-        </div>
+            {{--<button type="submit" class="btn btn-primary" id="button_add" style="font-size: 17px" onclick="aggiungi()">AGGIUNGI</button>--}}
+        {{--</div>--}}
 
         <div id="inserisci_ingredienti" >
             <ul id="lista_ing" style="list-style-type: none;" >
@@ -48,22 +40,37 @@
         </div>
     </section>
 
-
-
-
-
     <section class="corpo_sugg">
         {{--suggerimenti--}}
     </section>
 
 <script type="text/javascript">
-    var globalIngredients=<?php
-        $str = '[';
-        foreach($ingredientifromdb as $ingrediente){
-            $str.= '"'.$ingrediente->name.'", ';
+    <?php
+        try{
+            echo $script;
+        }catch(Exception $ex){
+
         }
-        $str.=']';
-        echo $str;
+    ?>
+    <?php
+        try{
+            $str = 'var globalIngredients=[';
+            foreach($ingredientifromdb as $num=> $ingrediente){
+                if($num != 0){
+                    $str .= ', "';
+                    $str.= $ingrediente->name .'"';
+                }else
+                    $str.= '"' .$ingrediente->name .'"';
+
+            }
+            $str.=']; ';
+            $str.= '$( "#ingredienti" ).autocomplete({
+                  source: globalIngredients
+                })';
+            echo $str;
+        }catch(Exception $ex){
+
+        }
     ?>;
 </script>
 @endsection

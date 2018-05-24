@@ -12,16 +12,30 @@
 */
 use Illuminate\Database\Eloquent\Model;
 
+Route::get('crawler', 'Crawler@crawler');
 
-Route::get('crawler', 'Crawler@getrecipes');
+//Route::get('user/{script}/{auth}', 'Home@index_ingredients_auth' );
 
-Route::get('/', 'Home@getingredients');
+Route::get('/', function(){
+    return view('pag_recipes.index');
+});
 
 Route::post('ingredients_database' , 'Home@ing_db');
 
 Route::post('give_ingredient' , 'Home@giveingredient');
 
 Route::post('send_results' , 'Home@print_results');
+
+Route::post('/trylog' , 'Home@login');
+
+Route::post('/trysignup' , 'Home@signup');
+
+//Route::post('signup/{number}' , 'Home@signup');
+
+
+//DELETE
+
+
 //public function print_results(){
 //    $id_ingredients = $_POST['ids_recipes'];
 //    return view('pag_recipes.results', ['id_ingredients_finded' => $id_ingredients]);
@@ -50,6 +64,10 @@ Route::get('all', 'Home@getallrecipes');
 
 Route::get('twopeople', 'Home@fortwopeople');
 
+Route::get('index', function(){
+    return view('pag_recipes.index');
+});
+
 Route::get('signup', function(){
     return view('pag_recipes.signup');
 });
@@ -59,7 +77,7 @@ Route::get('login', function(){
 });
 
 Route::get('logout', function(){
-    return view('auth.logout');
+    return view('Home@logout');
 });
 Route::get('master2', function(){
     return view('pag_recipes.master2');

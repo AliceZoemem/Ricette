@@ -22,6 +22,7 @@ class CreateRecipesTable extends Migration
             $table->string('doses_per_person');
             $table->string('description', 10000);
             $table->string('recipe_img');
+            $table->string('category');
             //$table->string('calories');
             $table->timestamps();
         });
