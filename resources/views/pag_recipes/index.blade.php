@@ -1,10 +1,9 @@
 @extends('master')
 
-@section('title','Cerca Ricette - Il mio frigo')
+@section('title','Tasty and Yummy')
 
 @section('content')
     <style>
-
         /*#main{*/
             /*background-color: #f1f2f2;*/
             /*background-position: 0 0;*/
@@ -17,10 +16,10 @@
             /*text-align: center;*/
         /*}*/
     </style>
-    <input id="token_invisible" type="hidden" value="{{ csrf_token() }}">
-    <form class="main-form" action="" method="post">
-        <input type="text" class="form-control" id="ingredienti" value="Aggiungi un ingrediente..."/>
-        <button type="submit" class="btn btn-warning" id="button_add" style="font-size: 17px" onclick="aggiungi()">AGGIUNGI</button>
+    <form class="main-form" action="/add_research" method="post">
+        {{ csrf_field() }}
+        <input type="text" class="form-control" id="ingredienti" name="ingredient" placeholder="Aggiungi un ingrediente..."/>
+        <button type="submit" class="btn btn-warning" id="button_add">AGGIUNGI</button>
     </form>
 
     {{--<section class="corpo" id="main">--}}
@@ -44,7 +43,7 @@
         {{--suggerimenti--}}
     </section>
 
-<script type="text/javascript">
+<script>
     <?php
         try{
             echo $script;
@@ -61,7 +60,6 @@
                     $str.= $ingrediente->name .'"';
                 }else
                     $str.= '"' .$ingrediente->name .'"';
-
             }
             $str.=']; ';
             $str.= '$( "#ingredienti" ).autocomplete({
@@ -71,6 +69,6 @@
         }catch(Exception $ex){
 
         }
-    ?>;
+    ?>
 </script>
 @endsection

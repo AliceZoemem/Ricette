@@ -16,8 +16,13 @@ Route::get('crawler', 'Crawler@crawler');
 
 //Route::get('user/{script}/{auth}', 'Home@index_ingredients_auth' );
 
-Route::get('/', function(){
-    return view('pag_recipes.index');
+//Route::get('/', function(){
+//    return view('pag_recipes.index');
+//});
+//Route::get('/', 'Home@getingredients');
+
+Route::get('/', function () {
+    return view('pag_recipes.homepage');
 });
 
 Route::post('ingredients_database' , 'Home@ing_db');
@@ -25,6 +30,8 @@ Route::post('ingredients_database' , 'Home@ing_db');
 Route::post('give_ingredient' , 'Home@giveingredient');
 
 Route::post('send_results' , 'Home@print_results');
+
+Route::post('/add_research' , 'Home@add_research');
 
 Route::post('/trylog' , 'Home@login');
 
@@ -60,13 +67,16 @@ Route::get('contact', function(){
     return view('pag_recipes.contact');
 });
 
-Route::get('all', 'Home@getallrecipes');
+Route::get('all', 'Home@getallrecipes');//POST
 
 Route::get('twopeople', 'Home@fortwopeople');
 
-Route::get('index', function(){
-    return view('pag_recipes.index');
-});
+Route::get('index', 'Home@getingredients');
+
+Route::get('profilo', 'Home@profilo_user');
+//Route::get('index', function(){
+//    return view('pag_recipes.index');
+//});
 
 Route::get('signup', function(){
     return view('pag_recipes.signup');
@@ -76,9 +86,7 @@ Route::get('login', function(){
     return view('pag_recipes.login');
 });
 
-Route::get('logout', function(){
-    return view('Home@logout');
-});
+Route::get('logout','Home@logout');
 Route::get('master2', function(){
     return view('pag_recipes.master2');
 });

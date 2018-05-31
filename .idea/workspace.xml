@@ -2,38 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8a5efa68-ab47-4192-b18a-dfe1d54178f0" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/jquery.min.js" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/css/img/pie2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/views/img/ali.jpg" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/public/css/img/Drawing(1).png" afterPath="$PROJECT_DIR$/public/img/Drawing(1).png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/public/css/img/Drawing(2).png" afterPath="$PROJECT_DIR$/public/img/Drawing(2).png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/public/css/img/Drawing(3).png" afterPath="$PROJECT_DIR$/public/img/Drawing(3).png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/public/css/img/Drawing(4).png" afterPath="$PROJECT_DIR$/public/img/Drawing(4).png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/public/css/img/Drawing(5).png" afterPath="$PROJECT_DIR$/public/img/Drawing(5).png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/public/css/img/Drawing(6).png" afterPath="$PROJECT_DIR$/public/img/Drawing(6).png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/public/css/img/Drawing.png" afterPath="$PROJECT_DIR$/public/img/Drawing.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/public/css/img/cucina-arancio.jpg" afterPath="$PROJECT_DIR$/public/img/cucina-arancio.jpg" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/public/css/img/cucina_blu.jpg" afterPath="$PROJECT_DIR$/public/img/cucina_blu.jpg" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/public/css/img/cucina_marrone.jpg" afterPath="$PROJECT_DIR$/public/img/cucina_marrone.jpg" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/public/css/img/pasta-1181189.jpg" afterPath="$PROJECT_DIR$/public/img/pasta-1181189.jpg" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/public/css/img/pie1.png" afterPath="$PROJECT_DIR$/public/img/pie1.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/public/css/img/pie6.png" afterPath="$PROJECT_DIR$/public/img/pie6.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/public/css/img/recipes.png" afterPath="$PROJECT_DIR$/public/img/recipes.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/public/css/img/recipes2.png" afterPath="$PROJECT_DIR$/public/img/recipes2.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/public/css/img/spezie_1.jpg" afterPath="$PROJECT_DIR$/public/img/spezie_1.jpg" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/public/css/img/spezie_2.jpg" afterPath="$PROJECT_DIR$/public/img/spezie_2.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/css/jquery-ui.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/jquery-1.12.4.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/jquery-ui.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/pag_recipes/homepage.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Ricette_laravel/public/js/Ricette_js.js" afterPath="$PROJECT_DIR$/Ricette_laravel/public/js/Ricette_js.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Crawler.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Crawler.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Home.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Home.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Recipe.php" afterPath="$PROJECT_DIR$/app/Recipe.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/User.php" afterPath="$PROJECT_DIR$/app/User.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.json" afterPath="$PROJECT_DIR$/composer.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.lock" afterPath="$PROJECT_DIR$/composer.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/app.php" afterPath="$PROJECT_DIR$/config/app.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/migrations/2017_06_20_153728_create_recipes_table.php" afterPath="$PROJECT_DIR$/database/migrations/2017_06_20_153728_create_recipes_table.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/migrations/2017_06_20_154651_create_ingredient_recipe_pivot_table.php" afterPath="$PROJECT_DIR$/database/migrations/2017_06_20_154651_create_ingredient_recipe_pivot_table.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/style.css" afterPath="$PROJECT_DIR$/public/css/style.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/Ricette_js.js" afterPath="$PROJECT_DIR$/public/js/Ricette_js.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/master.blade.php" afterPath="$PROJECT_DIR$/resources/views/master.blade.php" />
@@ -42,13 +16,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/pag_recipes/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/pag_recipes/index.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/pag_recipes/login.blade.php" afterPath="$PROJECT_DIR$/resources/views/pag_recipes/login.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/pag_recipes/rightmenu.blade.php" afterPath="$PROJECT_DIR$/resources/views/pag_recipes/rightmenu.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/pag_recipes/signup.blade.php" afterPath="$PROJECT_DIR$/resources/views/pag_recipes/signup.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/web.php" afterPath="$PROJECT_DIR$/routes/web.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" afterPath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/composer/autoload_files.php" afterPath="$PROJECT_DIR$/vendor/composer/autoload_files.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" afterPath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" afterPath="$PROJECT_DIR$/vendor/composer/autoload_static.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/composer/installed.json" afterPath="$PROJECT_DIR$/vendor/composer/installed.json" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -72,73 +40,33 @@
       <file leaf-file-name="index.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/pag_recipes/index.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="19" column="73" lean-forward="false" selection-start-line="19" selection-start-column="73" selection-end-line="19" selection-end-column="73" />
+            <state relative-caret-position="530">
+              <caret line="74" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
               <folding>
-                <marker date="1526996800880" expanded="false" signature="1440:1455" ph="..." />
+                <marker date="1527751809900" expanded="false" signature="1371:1386" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="master.blade.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/views/master.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="12" column="122" lean-forward="false" selection-start-line="12" selection-start-column="122" selection-end-line="12" selection-end-column="122" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/css/style.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2988">
-              <caret line="166" column="22" lean-forward="false" selection-start-line="166" selection-start-column="11" selection-end-line="166" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Crawler.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Crawler.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="468">
-              <caret line="50" column="53" lean-forward="false" selection-start-line="50" selection-start-column="53" selection-end-line="50" selection-end-column="53" />
-              <folding>
-                <element signature="e#47#66#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="2017_06_20_154651_create_ingredient_recipe_pivot_table.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/database/migrations/2017_06_20_154651_create_ingredient_recipe_pivot_table.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="20" column="47" lean-forward="false" selection-start-line="20" selection-start-column="47" selection-end-line="20" selection-end-column="47" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="all.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/pag_recipes/all.blade.php">
+      <file leaf-file-name="header.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/pag_recipes/header.blade.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="270">
-              <caret line="15" column="15" lean-forward="false" selection-start-line="8" selection-start-column="8" selection-end-line="15" selection-end-column="15" />
+              <caret line="46" column="37" lean-forward="false" selection-start-line="46" selection-start-column="37" selection-end-line="46" selection-end-column="37" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="signup.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/pag_recipes/signup.blade.php">
+      <file leaf-file-name="Home.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Home.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="25" column="76" lean-forward="false" selection-start-line="25" selection-start-column="4" selection-end-line="25" selection-end-column="76" />
-              <folding />
+            <state relative-caret-position="18">
+              <caret line="109" column="76" lean-forward="false" selection-start-line="109" selection-start-column="62" selection-end-line="109" selection-end-column="76" />
+              <folding>
+                <element signature="e#39#58#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -146,8 +74,54 @@
       <file leaf-file-name="web.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/web.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="954">
-              <caret line="62" column="37" lean-forward="false" selection-start-line="62" selection-start-column="24" selection-end-line="62" selection-end-column="37" />
+            <state relative-caret-position="170">
+              <caret line="24" column="37" lean-forward="false" selection-start-line="24" selection-start-column="37" selection-end-line="24" selection-end-column="37" />
+              <folding>
+                <element signature="e#7#389#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="homepage.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/pag_recipes/homepage.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="162">
+              <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="rightmenu.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/pag_recipes/rightmenu.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="144">
+              <caret line="8" column="22" lean-forward="true" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
+              <folding>
+                <marker date="1527751219340" expanded="true" signature="561:562" ph="..." />
+                <marker date="1527751219340" expanded="true" signature="753:1014" ph="..." />
+                <marker date="1527751219340" expanded="true" signature="827:976" ph="..." />
+                <marker date="1527751219340" expanded="true" signature="1150:1425" ph="..." />
+                <marker date="1527751219340" expanded="true" signature="1202:1399" ph="..." />
+                <marker date="1527751219340" expanded="true" signature="1467:1740" ph="..." />
+                <marker date="1527751219340" expanded="true" signature="1520:1714" ph="..." />
+                <marker date="1527751219340" expanded="true" signature="1782:2066" ph="..." />
+                <marker date="1527751219340" expanded="true" signature="1835:2040" ph="..." />
+                <marker date="1527751219340" expanded="true" signature="2108:2392" ph="..." />
+                <marker date="1527751219340" expanded="true" signature="2161:2366" ph="..." />
+                <marker date="1527751219340" expanded="true" signature="2434:2706" ph="..." />
+                <marker date="1527751219340" expanded="true" signature="2486:2680" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/css/style.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="198">
+              <caret line="32" column="20" lean-forward="false" selection-start-line="32" selection-start-column="20" selection-end-line="32" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -165,22 +139,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>getParameterByName</find>
-      <find>ingredients_database</find>
-      <find>&lt;input id=&quot;token_invisible&quot; type=&quot;hidden&quot; value=&quot;{{ csrf_token() }}&quot;&gt;</find>
-      <find>token_invisible&quot; type=&quot;hidden&quot; value=&quot;{{ csrf_token() }}&quot;&gt;</find>
-      <find>/{number}</find>
-      <find>/{number</find>
-      <find>t</find>
-      <find>token</find>
-      <find>token_</find>
-      <find>token_i</find>
-      <find>token_in</find>
-      <find>token_invis</find>
-      <find>token_invisi</find>
-      <find>token_invisible</find>
-      <find>logget</find>
-      <find>in</find>
       <find>hidden</find>
       <find>@media screen and (max-width: 900px) {@media screen and (max-width: 900px) {</find>
       <find>$ricette_ottenute</find>
@@ -190,11 +148,27 @@
       <find>info</find>
       <find>$inserisci_database</find>
       <find>get_ingredients</find>
-      <find>dd</find>
       <find>$ricetta-&gt;ingredients()</find>
       <find>$id_ingredient</find>
       <find>$array_id_ingredienti</find>
       <find>get_id_ingredients</find>
+      <find>hidde</find>
+      <find>get</find>
+      <find>add</find>
+      <find>add_Re</find>
+      <find>index_ingredients</find>
+      <find>Cookie</find>
+      <find>cookie_user</find>
+      <find>getrandomrecipes</find>
+      <find>rightmenu</find>
+      <find>req</find>
+      <find>Sess</find>
+      <find>index_ingredients_auth</find>
+      <find>index</find>
+      <find>dd</find>
+      <find>dd(</find>
+      <find>header</find>
+      <find>topm</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$</dir>
@@ -282,27 +256,31 @@
         <option value="$PROJECT_DIR$/storage/framework/views/2c828b199d6788f2c3c98d4e997ab248df2a14ad.php" />
         <option value="$PROJECT_DIR$/resources/views/masterdue.blade.php" />
         <option value="$PROJECT_DIR$/public/js/jquery.min.js" />
-        <option value="$PROJECT_DIR$/resources/views/pag_recipes/rightmenu.blade.php" />
         <option value="$PROJECT_DIR$/Ricette_laravel/public/js/Ricette_js.js" />
         <option value="$PROJECT_DIR$/resources/views/master2.blade.php" />
         <option value="$PROJECT_DIR$/config/app.php" />
-        <option value="$PROJECT_DIR$/public/js/Ricette_js.js" />
-        <option value="$PROJECT_DIR$/resources/views/pag_recipes/login.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/CookieController.php" />
         <option value="$PROJECT_DIR$/app/User.php" />
         <option value="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" />
         <option value="$PROJECT_DIR$/database/migrations/2017_06_20_153728_create_recipes_table.php" />
         <option value="$PROJECT_DIR$/app/Recipe.php" />
-        <option value="$PROJECT_DIR$/routes/web.php" />
-        <option value="$PROJECT_DIR$/resources/views/pag_recipes/header.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Home.php" />
-        <option value="$PROJECT_DIR$/resources/views/master.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/pag_recipes/signup.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/pag_recipes/all.blade.php" />
-        <option value="$PROJECT_DIR$/public/css/style.css" />
-        <option value="$PROJECT_DIR$/resources/views/pag_recipes/index.blade.php" />
         <option value="$PROJECT_DIR$/database/migrations/2017_06_20_154651_create_ingredient_recipe_pivot_table.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Crawler.php" />
+        <option value="$PROJECT_DIR$/public/css/jquery-ui.css" />
+        <option value="$PROJECT_DIR$/public/js/jquery-1.12.4.js" />
+        <option value="$PROJECT_DIR$/public/js/jquery-ui.js" />
+        <option value="$PROJECT_DIR$/resources/views/pag_recipes/login.blade.php" />
+        <option value="$PROJECT_DIR$/public/js/Ricette_js.js" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Home.php" />
+        <option value="$PROJECT_DIR$/resources/views/pag_recipes/all.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/master.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/pag_recipes/rightmenu.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/pag_recipes/index.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/pag_recipes/header.blade.php" />
+        <option value="$PROJECT_DIR$/routes/web.php" />
+        <option value="$PROJECT_DIR$/resources/views/pag_recipes/homepage.blade.php" />
+        <option value="$PROJECT_DIR$/public/css/style.css" />
       </list>
     </option>
   </component>
@@ -337,7 +315,6 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -492,7 +469,7 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="database" />
+              <option name="myItemId" value="fonts" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -506,84 +483,17 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="database" />
+              <option name="myItemId" value="fonts" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="migrations" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Ricette_laravel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Ricette_laravel" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="config" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Ricette_laravel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Ricette_laravel" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Ricette_laravel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Ricette_laravel" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Http" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Ricette_laravel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Ricette_laravel" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Http" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Controllers" />
+              <option name="myItemId" value="Indie_Flower" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -593,12 +503,13 @@
     <property name="list.type.of.created.stylesheet" value="CSS" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/public/img" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/resources/views" />
       <recent name="$PROJECT_DIR$/public/css/img" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/public/img" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -727,11 +638,23 @@
       <workItem from="1527005884695" duration="751000" />
       <workItem from="1527063515257" duration="5975000" />
       <workItem from="1527172206974" duration="8303000" />
+      <workItem from="1527181576247" duration="2176000" />
+      <workItem from="1527186157367" duration="1983000" />
+      <workItem from="1527229164444" duration="87000" />
+      <workItem from="1527232405307" duration="2859000" />
+      <workItem from="1527244153569" duration="598000" />
+      <workItem from="1527327673059" duration="855000" />
+      <workItem from="1527574643582" duration="5530000" />
+      <workItem from="1527609440524" duration="5411000" />
+      <workItem from="1527681717511" duration="1949000" />
+      <workItem from="1527689257370" duration="10733000" />
+      <workItem from="1527704956487" duration="2104000" />
+      <workItem from="1527750871978" duration="2085000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="99044000" />
+    <option name="totallyTimeSpent" value="135414000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="64" y="-11" width="1303" height="780" extended-state="6" />
@@ -743,7 +666,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24940239" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2488263" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
@@ -765,29 +688,11 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="1" />
+      <option name="time" value="2" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/views/pag_recipes/singlerecipe.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="1" column="28" lean-forward="false" selection-start-line="1" selection-start-column="18" selection-end-line="1" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Downloads/Betaconvenzioni-master/registrazione.php" />
-    <entry file="file://$PROJECT_DIR$/public/img/Drawing(1).png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/img/Drawing(2).png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/img/Drawing(4).png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -889,13 +794,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/pag_recipes/rightmenu.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="33" column="32" lean-forward="false" selection-start-line="33" selection-start-column="21" selection-end-line="33" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Ricette_laravel/public/js/Ricette_js.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="71">
@@ -939,13 +837,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/Ricette_js.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="9" column="30" lean-forward="false" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CookieController.php" />
     <entry file="file://$PROJECT_DIR$/app/Ingredient.php">
       <provider selected="true" editor-type-id="text-editor">
@@ -982,50 +873,142 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/pag_recipes/header.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/pag_recipes/signup.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="1" column="25" lean-forward="false" selection-start-line="1" selection-start-column="25" selection-end-line="1" selection-end-column="25" />
+        <state relative-caret-position="396">
+          <caret line="25" column="76" lean-forward="false" selection-start-line="25" selection-start-column="4" selection-end-line="25" selection-end-column="76" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/jquery-ui.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="530">
+          <caret line="1310" column="1" lean-forward="false" selection-start-line="1310" selection-start-column="1" selection-end-line="1310" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/jquery-1.12.4.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="15" column="3" lean-forward="false" selection-start-line="15" selection-start-column="3" selection-end-line="15" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/jquery-ui.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="557">
+          <caret line="18708" column="4" lean-forward="false" selection-start-line="18708" selection-start-column="4" selection-end-line="18708" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2017_06_20_154651_create_ingredient_recipe_pivot_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="20" column="47" lean-forward="false" selection-start-line="20" selection-start-column="47" selection-end-line="20" selection-end-column="47" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/pag_recipes/login.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="35">
-          <caret line="51" column="71" lean-forward="false" selection-start-line="51" selection-start-column="51" selection-end-line="51" selection-end-column="71" />
+        <state relative-caret-position="972">
+          <caret line="54" column="28" lean-forward="false" selection-start-line="54" selection-start-column="28" selection-end-line="54" selection-end-column="28" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/pag_recipes/signup.blade.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Crawler.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="25" column="76" lean-forward="false" selection-start-line="25" selection-start-column="4" selection-end-line="25" selection-end-column="76" />
-          <folding />
+        <state relative-caret-position="1368">
+          <caret line="81" column="52" lean-forward="false" selection-start-line="81" selection-start-column="41" selection-end-line="81" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/Ricette_js.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="954">
+          <caret line="53" column="14" lean-forward="false" selection-start-line="53" selection-start-column="14" selection-end-line="53" selection-end-column="14" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/pag_recipes/all.blade.php">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="17" column="40" lean-forward="false" selection-start-line="17" selection-start-column="24" selection-end-line="17" selection-end-column="40" />
+          <folding>
+            <marker date="1527706515899" expanded="true" signature="2755:2964" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/pag_recipes/rightmenu.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="8" column="22" lean-forward="true" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
+          <folding>
+            <marker date="1527751219340" expanded="true" signature="561:562" ph="..." />
+            <marker date="1527751219340" expanded="true" signature="753:1014" ph="..." />
+            <marker date="1527751219340" expanded="true" signature="827:976" ph="..." />
+            <marker date="1527751219340" expanded="true" signature="1150:1425" ph="..." />
+            <marker date="1527751219340" expanded="true" signature="1202:1399" ph="..." />
+            <marker date="1527751219340" expanded="true" signature="1467:1740" ph="..." />
+            <marker date="1527751219340" expanded="true" signature="1520:1714" ph="..." />
+            <marker date="1527751219340" expanded="true" signature="1782:2066" ph="..." />
+            <marker date="1527751219340" expanded="true" signature="1835:2040" ph="..." />
+            <marker date="1527751219340" expanded="true" signature="2108:2392" ph="..." />
+            <marker date="1527751219340" expanded="true" signature="2161:2366" ph="..." />
+            <marker date="1527751219340" expanded="true" signature="2434:2706" ph="..." />
+            <marker date="1527751219340" expanded="true" signature="2486:2680" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/pag_recipes/header.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
-          <caret line="15" column="15" lean-forward="false" selection-start-line="8" selection-start-column="8" selection-end-line="15" selection-end-column="15" />
+          <caret line="46" column="37" lean-forward="false" selection-start-line="46" selection-start-column="37" selection-end-line="46" selection-end-column="37" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/pag_recipes/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="19" column="73" lean-forward="false" selection-start-line="19" selection-start-column="73" selection-end-line="19" selection-end-column="73" />
+        <state relative-caret-position="530">
+          <caret line="74" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
           <folding>
-            <marker date="1526996800880" expanded="false" signature="1440:1455" ph="..." />
+            <marker date="1527751809900" expanded="false" signature="1371:1386" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/pag_recipes/homepage.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="24" column="37" lean-forward="false" selection-start-line="24" selection-start-column="37" selection-end-line="24" selection-end-column="37" />
+          <folding>
+            <element signature="e#7#389#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/master.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="35" column="34" lean-forward="false" selection-start-line="35" selection-start-column="34" selection-end-line="35" selection-end-column="34" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Home.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="846">
-          <caret line="71" column="9" lean-forward="false" selection-start-line="71" selection-start-column="9" selection-end-line="71" selection-end-column="9" />
+        <state relative-caret-position="18">
+          <caret line="109" column="76" lean-forward="false" selection-start-line="109" selection-start-column="62" selection-end-line="109" selection-end-column="76" />
           <folding>
             <element signature="e#39#58#0#PHP" expanded="true" />
           </folding>
@@ -1034,42 +1017,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2988">
-          <caret line="166" column="22" lean-forward="false" selection-start-line="166" selection-start-column="11" selection-end-line="166" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2017_06_20_154651_create_ingredient_recipe_pivot_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="20" column="47" lean-forward="false" selection-start-line="20" selection-start-column="47" selection-end-line="20" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="954">
-          <caret line="62" column="37" lean-forward="false" selection-start-line="62" selection-start-column="24" selection-end-line="62" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Crawler.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="50" column="53" lean-forward="false" selection-start-line="50" selection-start-column="53" selection-end-line="50" selection-end-column="53" />
-          <folding>
-            <element signature="e#47#66#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/master.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="12" column="122" lean-forward="false" selection-start-line="12" selection-start-column="122" selection-end-line="12" selection-end-column="122" />
+        <state relative-caret-position="198">
+          <caret line="32" column="20" lean-forward="false" selection-start-line="32" selection-start-column="20" selection-end-line="32" selection-end-column="20" />
           <folding />
         </state>
       </provider>

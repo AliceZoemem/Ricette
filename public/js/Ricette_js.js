@@ -7,12 +7,6 @@ var inizio = true;
 var slide = true;
 var i= 0;
 
-$(document).ready(function() {
-    $( "#ingrediente" ).autocomplete({
-        source: globalIngredients
-    });
-} );
-
 // $(document).ready(function() {
 //     $( "#prova_ids" ).value({
 //         source: idsrecipesresults
@@ -48,41 +42,52 @@ function LogIn(){
     //
     // });
 }
+$(document).ready(function(){
+    $('#hidden_cake').hide();
+    if($(window).width() < 960){
+        $('#hidden_cake').hide();
+        $('.disappare').hide();
+    }
+});
+// function respo(){
+//     //change class to convert style
+//     $('.disappare').show();
+// }
 
-function aggiungi() {
-    var new_ingredient = document.getElementById('ingrediente').value;
-    
-    //token cambio pagina {{ csrf_field() }} usando il form a fronte della chiamata cambio pagina
-    var token_page = document.getElementById('token_invisible').value;
-    $.post("ingredients_database", {_token: token_page, 'ingredient': new_ingredient}, function (ingrediente_accettato) {
-        if (ingrediente_accettato == 'si') {
-            if (inizio == true) {
-                inizio = false;
-                var crea_bottone_cerca = document.createElement("BUTTON");
-                var scritta_bottone_cerca = document.createTextNode('CERCA');
-                crea_bottone_cerca.setAttribute("id", "btncerca");
-                crea_bottone_cerca.setAttribute("style", "font-size: 17px");
-                crea_bottone_cerca.setAttribute("onclick", "cerca_ricetta()");
-                crea_bottone_cerca.appendChild(scritta_bottone_cerca);
-                document.getElementById("avvia").insertBefore(crea_bottone_cerca, document.getElementById("btncerca"));
-                // tabspace.innerHTML = "&nbsp";
-                // crea_bottone_cerca.appendChild(tabspace);
-                var crea_label_match = document.createElement("LABEL");
-                var scritta_label_trovate = document.createTextNode('Ricette trovate: null');
-                crea_label_match.setAttribute("id", "trovato");
-                crea_label_match.appendChild(scritta_label_trovate);
-                document.getElementById("avvia").insertBefore(crea_label_match, document.getElementById("trovato"));
-            }
-
-            if (slide == true) {
-                $("#inserisci_ingredienti").slideDown();
-                slide = false;
-            }
-            crea(new_ingredient, ingredienti_inseriti);
-        }
-    });
-
-}
+// function aggiungi() {
+//     var new_ingredient = document.getElementById('ingrediente').value;
+//     alert(new_ingredient);
+//     //token cambio pagina {{ csrf_field() }} usando il form a fronte della chiamata cambio pagina
+//     var token_page = document.getElementById('token_invisible').value;
+//     $.post("ingredients_database", {_token: token_page, 'ingredient': new_ingredient}, function (ingrediente_accettato) {
+//         if (ingrediente_accettato == 'si') {
+//             if (inizio == true) {
+//                 inizio = false;
+//                 var crea_bottone_cerca = document.createElement("BUTTON");
+//                 var scritta_bottone_cerca = document.createTextNode('CERCA');
+//                 crea_bottone_cerca.setAttribute("id", "btncerca");
+//                 crea_bottone_cerca.setAttribute("style", "font-size: 17px");
+//                 crea_bottone_cerca.setAttribute("onclick", "cerca_ricetta()");
+//                 crea_bottone_cerca.appendChild(scritta_bottone_cerca);
+//                 document.getElementById("avvia").insertBefore(crea_bottone_cerca, document.getElementById("btncerca"));
+//                 // tabspace.innerHTML = "&nbsp";
+//                 // crea_bottone_cerca.appendChild(tabspace);
+//                 var crea_label_match = document.createElement("LABEL");
+//                 var scritta_label_trovate = document.createTextNode('Ricette trovate: null');
+//                 crea_label_match.setAttribute("id", "trovato");
+//                 crea_label_match.appendChild(scritta_label_trovate);
+//                 document.getElementById("avvia").insertBefore(crea_label_match, document.getElementById("trovato"));
+//             }
+//
+//             if (slide == true) {
+//                 $("#inserisci_ingredienti").slideDown();
+//                 slide = false;
+//             }
+//             crea(new_ingredient, ingredienti_inseriti);
+//         }
+//     });
+//
+// }
 //$.post("give_ingredient",{ 'add_ingredient' : new_ingredient , _token : token_page});
 
 function crea(new_ingredient, ingredienti_inseriti) {

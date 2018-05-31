@@ -1,62 +1,54 @@
-    <section class="menulateraledestro">
-    <style>
+<nav id="rightmenu" class="rightm navbar navbar-expand-lg ">
+    <button id="btn_cake" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <img id="cake" src="img/recipes1.png">
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        {{--@inject('rightmenu', 'App\Http\Controllers\Home')--}}
+        {{--@if( empty($ricette_random))--}}
+            {{--{{ $rightmenu->getrandomrecipes() }}--}}
+        {{--@endif--}}
 
-    </style>
-    <div id="rightmenu" class="rightm">
-        <ul id="menu">
-            <li class="disappare">
-                <a href="/singlerecipe/181"><u>le tortillas di farina</u>
-                    <img src="http://www.giallozafferano.it/images/ricette/6/631/foto_hd/hd650x433_wm.jpg">
-                </a></br></br>
-            </li>
-            <li class="disappare">
-                <a href="/singlerecipe/15"><u>la pizza senza glutine</u>
-                    <img src="http://www.giallozafferano.it/images/ricette/16/1655/foto_hd/hd650x433_wm.jpg">
-                </a></br></br>
-            </li>
-            <li class="disappare">
-                <a href="/singlerecipe/117"><u>i samosa di tonno</u>
-                    <img src="http://www.giallozafferano.it/images/ricette/178/17838/foto_hd/hd650x433_wm.jpg">
-                </a></br></br>
-            </li>
-            <li class="disappare">
-                <a href="/singlerecipe/104"><u>lo strudel con ricotta e spinaci</u>
-                    <img src="http://www.giallozafferano.it/images/ricette/2/268/foto_hd/hd650x433_wm.jpg">
-                </a></br></br>
-            </li>
-            <li class="disappare">
-                <a href="/singlerecipe/56"><u>la zuppa di noodles</u>
-                    <img src="http://www.giallozafferano.it/images/ricette/36/3603/foto_hd/hd650x433_wm.jpg">
-                </a></br></br>
-            </li>
+        <ul id="menu" class="navbar-nav">
+            <?php
+                try{
+                    foreach ($ricette_random as $ricetta){
+                        echo '<li class="nav-item">';
+                        echo '<a href="/singlerecipe/'.$ricetta->id.'">'.$ricetta->name_recipe;
+                        echo '<img class="radom_recipe" src="'.$ricetta->recipe_img.'">';
+                        echo '</a>';
+                        echo '</li>';
+                    }
+                }catch(Exception $ex){
+                }
+            ?>
+
+
+            {{--<li class="nav-item">--}}
+                {{--<a href="/singlerecipe/15"><u>la pizza senza glutine</u>--}}
+                    {{--<img class="radom_recipe" src="http://www.giallozafferano.it/images/ricette/16/1655/foto_hd/hd650x433_wm.jpg">--}}
+                {{--</a>--}}
+            {{--</li>--}}
+            {{--<li class="nav-item">--}}
+                {{--<a href="/singlerecipe/117"><u>i samosa di tonno</u>--}}
+                    {{--<img class="radom_recipe" src="http://www.giallozafferano.it/images/ricette/178/17838/foto_hd/hd650x433_wm.jpg">--}}
+                {{--</a>--}}
+            {{--</li>--}}
+            {{--<li class="nav-item">--}}
+                {{--<a href="/singlerecipe/104"><u>lo strudel con ricotta e spinaci</u>--}}
+                    {{--<img class="radom_recipe" src="http://www.giallozafferano.it/images/ricette/2/268/foto_hd/hd650x433_wm.jpg">--}}
+                {{--</a>--}}
+            {{--</li>--}}
+            {{--<li class="nav-item">--}}
+                {{--<a href="/singlerecipe/104"><u>lo strudel con ricotta e spinaci</u>--}}
+                    {{--<img class="radom_recipe" src="http://www.giallozafferano.it/images/ricette/2/268/foto_hd/hd650x433_wm.jpg">--}}
+                {{--</a>--}}
+            {{--</li>--}}
+            {{--<li class="nav-item">--}}
+                {{--<a href="/singlerecipe/56"><u>la zuppa di noodles</u>--}}
+                    {{--<img class="radom_recipe" src="http://www.giallozafferano.it/images/ricette/36/3603/foto_hd/hd650x433_wm.jpg">--}}
+                {{--</a>--}}
+            {{--</li>--}}
         </ul>
-        <a href="javascript:void(0);" style="font-size:30px;" class="icon" onclick="OpenRigthMenu()">
-            <img id="hidden_cake" src="img/recipes1.png" style="width: 12%; height: 7%; float:right; margin-top: 1%;  margin-right: 1%"/>
-        </a>
     </div>
-</section>
-
-<script>
-//    function respo() {
-//        var x = document.getElementById("Menu");
-//        if (x.className === "topmenu") {
-//            x.className += " responsive";
-//            //take the span class and convert
-//        } else {
-//            x.className = "topmenu";
-//        }
-//    }
-    $(document).ready(function(){
-
-        $('#hidden_cake').hide();
-        if($(window).width() < 960){
-            $('#hidden_cake').hide();
-            $('.disappare').hide();
-        }
-    });
-    function respo(){
-        //change class to convert style
-        $('.disappare').show();
-    }
-</script>
+</nav>
 

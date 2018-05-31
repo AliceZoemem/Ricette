@@ -52,7 +52,7 @@
         <input id="email" type="text" name="email" class="form-control" placeholder="Email">
         <input id="pw" type="password" name="pw" class="form-control" placeholder="Password">
         <br/>
-        <button class="btn btn-primary">Login</button>
+        <button type="submit" class="btn btn-primary">Login</button>
         <br/><br/>
 
         Non sei ancora registrato? <a class="btn btn-link" href="signup">Registrati</a>
