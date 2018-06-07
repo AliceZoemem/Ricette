@@ -13,31 +13,30 @@
 use Illuminate\Database\Eloquent\Model;
 
 Route::get('crawler', 'Crawler@crawler');
-
-//Route::get('user/{script}/{auth}', 'Home@index_ingredients_auth' );
-
 //Route::get('/', function(){
 //    return view('pag_recipes.index');
 //});
 //Route::get('/', 'Home@getingredients');
 
-Route::get('/', function () {
-    return view('pag_recipes.homepage');
-});
+Route::get('/', 'Home@home')->middleware('rightmenu');
 
-Route::post('ingredients_database' , 'Home@ing_db');
+Route::get('/index', 'Home@home')->middleware('rightmenu');
 
-Route::post('give_ingredient' , 'Home@giveingredient');
+//Route::post('ingredients_database' , 'Home@ing_db');
 
-Route::post('send_results' , 'Home@print_results');
+//Route::post('give_ingredient' , 'Home@giveingredient');
 
-Route::post('/add_research' , 'Home@add_research');
+//Route::post('send_results' , 'Home@print_results');
+
+Route::post('change_profile', 'Home@change_profile')->middleware('rightmenu');
+
+Route::post('filter' , 'Home@apply_filter')->middleware('rightmenu');
+
+//Route::post('/add_research' , 'Home@add_research');
 
 Route::post('/trylog' , 'Home@login');
 
 Route::post('/trysignup' , 'Home@signup');
-
-//Route::post('signup/{number}' , 'Home@signup');
 
 
 //DELETE
@@ -48,45 +47,41 @@ Route::post('/trysignup' , 'Home@signup');
 //    return view('pag_recipes.results', ['id_ingredients_finded' => $id_ingredients]);
 //}
 Route::get('results', function () {
-    return view('pag_recipes.results');
+    return view('pag_recipes.results')->middleware('rightmenu');
 });
 
-Route::get('rightmenu', 'Home@getrandomrecipes');
+//Route::get('rightmenu', 'Home@getrandomrecipes');
 
-
-Route::get('singlerecipe/{number}', 'Home@stamponerecipe');
-
-Route::get('recipe', function () {
-    return view('pag_recipes.singlerecipe');
-});
+//Route::get('recipe', function () {
+//    return view('pag_recipes.singlerecipe');
+//});
 /*Route::get('api/ingredients', 'ApiController@getIngredients');
 
 Route::post('api/pivot', 'ApiController@get_ingredients_id');
 */
-Route::get('contact', function(){
-    return view('pag_recipes.contact');
-});
-
-Route::get('all', 'Home@getallrecipes');//POST
-
-Route::get('twopeople', 'Home@fortwopeople');
-
-Route::get('index', 'Home@getingredients');
-
-Route::get('profilo', 'Home@profilo_user');
-//Route::get('index', function(){
-//    return view('pag_recipes.index');
+//Route::get('contact', function(){
+//    return view('pag_recipes.contact');
 //});
 
-Route::get('signup', function(){
-    return view('pag_recipes.signup');
-});
+Route::get('all', 'Home@getallrecipes')->middleware('rightmenu');
 
-Route::get('login', function(){
-    return view('pag_recipes.login');
-});
+//Route::get('twopeople', 'Home@fortwopeople');
 
-Route::get('logout','Home@logout');
-Route::get('master2', function(){
-    return view('pag_recipes.master2');
-});
+Route::get('cerca', 'Home@getingredients')->middleware('rightmenu');
+
+Route::post('cerca_ricetta', 'Home@cerca_ricetta')->middleware('rightmenu');
+
+Route::get('profilo', 'Home@profilo_user')->middleware('rightmenu');
+
+Route::get('logout','Home@logout')->middleware('rightmenu');
+
+Route::get('/{signup}', 'Home@see_auth');
+
+Route::get('/{login}', 'Home@see_auth');
+
+Route::get('ricetta/{number}', 'Home@stamponerecipe')->where('number', '[0-9]+')->middleware('rightmenu');
+Route::get('categoria/{value}', 'Home@choose_category')->middleware('rightmenu');
+
+
+
+

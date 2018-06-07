@@ -2,15 +2,54 @@
 <html >
     <head>
         <style>
-
+            @font-face{
+                font-family: Cookie;
+                src: url('{{ public_path('fonts/Cookie/Cookie-Regular.ttf') }}');
+            }
+            @font-face{
+                font-family: BufferflyKids;
+                src: url('{{ public_path('fonts/Butterfly_Kids/ButterflyKids-Regular.ttf') }}');
+            }
+            @font-face{
+                font-family: IndieFlower;
+                src: url('{{ public_path('fonts/Indie_Flower/IndieFlower.ttf') }}');
+            }
+            @font-face {
+                font-family: Lobster;
+                src: url('{{ public_path('fonts/Lobster/Lobster-Regular.ttf')}}');
+            }
+            @font-face {
+                font-family: Oswald;
+                src: url('{{ public_path('fonts/Oswald/Oswald-Bold.ttf')}}'),
+                url('{{ public_path('fonts/Oswald/Oswald-Regular.ttf')}}'),
+                url('{{ public_path('fonts/Oswald/Oswald-ExtraLight.ttf')}}'),
+                url('{{ public_path('fonts/Oswald/Oswald-Light.ttf')}}'),
+                url('{{ public_path('fonts/Oswald/Oswald-Medium.ttf')}}'),
+                url('{{ public_path('fonts/Oswald/Oswald-SemiBold.ttf')}}');
+            }
+            @font-face {
+                font-family: Roboto;
+                src: url('{{ public_path('fonts/Roboto/RobotoSlab-Regular.ttf')}}'),
+                url('{{ public_path('fonts/Roboto/RobotoSlab-Bold.ttf')}}'),
+                url('{{ public_path('fonts/Roboto/RobotoSlab-Light.ttf')}}'),
+                url('{{ public_path('fonts/Roboto/RobotoSlab-Thin.ttf')}}');
+            }
+            @font-face {
+                font-family: SunFlower;
+                src: url('{{ public_path('fonts/Sunflower/Sunflower-Medium.ttf')}}'),
+                url('{{ public_path('fonts/Sunflower/Sunflower-Bold.ttf')}}'),
+                url('{{ public_path('fonts/Sunflower/Sunflower-Light.ttf')}}');
+            }
         </style>
 
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta name="description" content="Recipe site">
         <meta name="author" content="Albertin Alice">
+        <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         {{--<link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>--}}
         <link href='{{ asset('/css/bootstrap.css') }}' rel='stylesheet' type='text/css'>
         <link href='{{ asset('/css/bootstrap.min.css') }}' rel='stylesheet' type='text/css'>
@@ -26,20 +65,40 @@
         <title>@yield('title')</title>
     </head>
 
-    <body onload="">
-
+    <body onload="spinner()" class="gifspinner">
         <div id="topmenu" class="container">
             @include('pag_recipes.header')
         </div>
 
         <div class="menulateraledestro">
-            @include('pag_recipes.rightmenu')
-        </div>
 
+            <?php
+                try{
+                    $script = '';
+                    foreach ($rightmenu as $ricetta){
+                        $script .= '<li class="nav-item">';
+                        $script .= '<a href="/ricetta/'.$ricetta->id.'">';
+                        $script .= '<p>' .$ricetta->name_recipe. '</p>';
+                        $script .= '<img class="radom_recipe" src="'.$ricetta->recipe_img.'">';
+                        $script .= '</a>';
+                        $script .= '</li>';
+
+                    }
+//                    <?php
+//    use \App\Http\Middleware\Rightmenu;
+                    echo ($script);
+                }catch(Exception $ex){
+                }
+            ?>
+
+            {{--@include('pag_recipes.rightmenu')
+            {{--route('pag_recipes.rightmenu')--}}
+            {{--@yield('rightmenu')--}}
+        </div>
+        {{--<img src="/img/k.yA==">--}}
         <div class="content">
             @yield('content')
         </div>
-
         <footer class="footer">
             <div onclick="topFunction()" id="scrollup" title="Go to top"></div>
             <div class="container_footer">
@@ -47,6 +106,28 @@
             </div>
         </footer>
     </body>
+    <script>
+        window.onresize = function() {
+            if ($(window).width() < 990) {
+                $("#profilo").addClass('collapse');
+            } else {
+                $('#profilo').removeClass('collapse');
+            }
+        }
+        function spinner(){
+            setTimeout(function() {
+                $('#gif').hide();
+            }, 3000);
+        }
+        $(document).ready(function() {
+            if($(window).width() < 1090)
+            {
+                $("#profilo").addClass('collapse');
+            }else{
+                $('#profilo').removeClass('collapse');
+            }
+        } );
+    </script>
     @yield('page-js-script')
 </html>
 

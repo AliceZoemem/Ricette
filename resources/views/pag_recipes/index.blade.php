@@ -1,6 +1,6 @@
 @extends('master')
 
-@section('title','Tasty and Yummy')
+@section('title','Cerca - Tasty&Yummy')
 
 @section('content')
     <style>
@@ -18,7 +18,7 @@
     </style>
     <form class="main-form" action="/add_research" method="post">
         {{ csrf_field() }}
-        <input type="text" class="form-control" id="ingredienti" name="ingredient" placeholder="Aggiungi un ingrediente..."/>
+        <input type="text" class="lower form-control" id="ingredienti" name="ingredient" placeholder="Aggiungi un ingrediente..."/>
         <button type="submit" class="btn btn-warning" id="button_add">AGGIUNGI</button>
     </form>
 
@@ -32,12 +32,11 @@
             {{--<button type="submit" class="btn btn-primary" id="button_add" style="font-size: 17px" onclick="aggiungi()">AGGIUNGI</button>--}}
         {{--</div>--}}
 
-        <div id="inserisci_ingredienti" >
-            <ul id="lista_ing" style="list-style-type: none;" >
-            </ul>
-            <p id="avvia" style="font-size:24px">Avvia la ricerca:</p>
-        </div>
-    </section>
+    <div id="inserisci_ingredienti" >
+        <ul id="lista_ing" style="list-style-type: none;" >
+        </ul>
+        <p id="avvia" style="font-size:24px">Avvia la ricerca:</p>
+    </div>
 
     <section class="corpo_sugg">
         {{--suggerimenti--}}

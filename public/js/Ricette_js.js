@@ -7,12 +7,6 @@ var inizio = true;
 var slide = true;
 var i= 0;
 
-// $(document).ready(function() {
-//     $( "#prova_ids" ).value({
-//         source: idsrecipesresults
-//     });
-// } );
-
 function start(){
     document.getElementById('inserisci_ingredienti').style.visibility= 'hidden';
     document.getElementById('inserisci_ingredienti').style.display='none';

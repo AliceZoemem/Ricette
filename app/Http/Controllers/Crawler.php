@@ -22,6 +22,8 @@
                 'zuppa',
                 'verdura',
                 'pesce',
+                'cavallo',
+                'sushi',
                 'formaggio',
                 'patate',
                 'spinaci',

@@ -1,5 +1,43 @@
 @extends('master')
-@section('title','Ricetta - Il mio frigo')
+@section('title','Ricetta - Tasty&Yummy')
 @section('content')
+    <div class="container">
+        <a href="/all"><div id="back" title="back"></div></a>
+        <?php
+            try{
+                $echo =
+                    '<div id="single_top"><h1>'.$ricetta->name_recipe.'</h1>'.
+                    '<img src="'.$ricetta->recipe_img. '" alt="'.$ricetta->name_recipe.'" class="single_image">'.
+                    '<ul class="informazioni">'.
+                    '<li> difficolta: '.$ricetta->difficulty.'</li>'.
+                    '<li> dosi: '.$ricetta->doses_per_person.'</li>'.
+                    '<li> tempo di cottura: '.$ricetta->cooking_time.'</li>'.
+                    '<li> tempo di preparazione: '.$ricetta->preparation_time.'</li>'.
+                    '</ul>'.
+                    '<h1 class="h1-left">INGREDIENTI</h1>'.
+                    '<ul class="informazioni">';
 
-    <div id="singola_ricetta" ><div id="single_top"><h1>la zuppa di noodles</h1><img src="http://www.giallozafferano.it/images/ricette/36/3603/foto_hd/hd650x433_wm.jpg" alt="la zuppa di noodles"><ul ><li> difficolta: molto bassa</li><li> dosi: 4 persone</li><li> tempo di cottura: 45 min</li><li> tempo di preparazione: 30 min</li> </ul></div><div id="single_recipe"><h3> Preparazione: </h3><p>per preparare la zuppa di noodles iniziate a tagliare tutti gli ingredienti: prendete il petto di pollo ed eliminate l'osso a forma di "y", quindi dividetelo a metà (1); tagliate le due parti a cubetti di circa 2 cm di lato (2). quindi mondate le carote e tritatene finemente 50 g (3); la restante carota potete ridurla a rondelle tagliandola per obliquo (4). poi mondate e affettate finemente il porro, tritate la gamba e le foglioline del sedano (5), pelate e riducete a dadini le patate (6); lavate e tagliate a pezzetti anche le taccole (7). infine pulite i funghi (per questa operazione potete  consultare la scheda: pulire i funghi cahampignon): eliminate il gambo e raschiate via il terriccio se presente: quindi riducete le cappelle a fettine sottili (8). ora che tutti gli ingredienti sono pronti, in un tegame capiente versate l'olio d'oliva e le carote tritate (9), poi aggiungete il porro a fettine (10) e il sedano tritato (11), quindi mescolate (12) e fate appassire le verdure per circa 15 minuti. unite nel tegame il pollo a pezzetti (13), mescolate e fate rosolare per circa 5 minuti (14). poi aggiungete l'acqua a filo (15) e tutte le verdure: le taccole (16), le carote a rondelle e le patate a dadini (17). per ultimi unite anche i funghi (18). salate e pepate a piacere, poi per aromatizzare la zuppa grattugiate lo zenzero fresco (19) e coprite con un coperchio (20) per far cuocere la zuppa a fuoco moderato almeno 20 minuti, mescolando di tanto in tanto e aggiungendo altra acqua se necessario (dovrete mantenere il livello del liquido appena sopra gli ingredienti). passato il tempo necessario, versate i noodles nella zuppa (21) e cuocete per pochi minuti (o per il tempo indicato sulla confezione). a fine cottura unite anche il prezzemolo tritato (22) e spegnete il fuoco (23). dividete la zuppa di noodles in 4 ciotoline (24) e servitela con le apposite bacchette per una cena a tema! conservate la zuppa di noodles per 1 giorno in frigorifero coperta con pellicola trasparente.si sconsiglia la congelazione. la bellezza di questo piatto è che esistono molte varianti e voi stessi potrete crearne sostituendo le verdure che non gradite o non di stagione con altre, omettendo il pollo o sostiuendolo con della carne di manzo o del pesce. anche i noodles possono essere sostituiti con degli spaghetti riso!    </p></div> </br> </br></div>@endsection
+                for($i = 0; $i < count($pivot['ingredient']); $i++)
+                    $echo .= '<li>'. $pivot['ingredient'][$i] . '  ' . $pivot['amount'][$i].'</li>';
+
+                $echo .=
+                    '</ul>'.
+                    '</div><div id="single_recipe"><h3> Preparazione: </h3>'.
+                    '<p>'.$ricetta->description.'</p></div>'.
+                    ' </br> </br>';
+                echo $echo;
+                ;
+
+            }catch (Exception $ex){
+
+            }
+        ?>
+    </div>
+    <script>
+        <?php
+            try{
+                echo $script;
+            }catch(Exception $ex){}
+        ?>
+    </script>
+@endsection

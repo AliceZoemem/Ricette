@@ -1,12 +1,5 @@
-<?php
-//    $cookie_name= "auth_betaconvenzioni";
-//    if(isset($_COOKIE[$cookie_name]))
-//        header("Location: /homepage.php");
-?>
 @extends('master')
-
-@section('title','Login - Il mio frigo')
-
+@section('title','Login - Tasty&Yummy')
 @section('content')
     <script>
         $('#rightmenu').hide();
@@ -14,10 +7,8 @@
     </script>
 
     <style>
-        body{
-            /*font-family: 'Oswald', sans-serif;*/
-            font-family: 'Raleway', sans-serif;
-            padding-top:70px;
+        .content{
+            width: 100%;
         }
         .main-form{
             width:60%;
@@ -49,7 +40,7 @@
 
     <form method="POST" action="/trylog" class="main-form">
         {{ csrf_field() }}
-        <input id="email" type="text" name="email" class="form-control" placeholder="Email">
+        <input id="email" type="text" name="email" class="lower form-control" placeholder="Email">
         <input id="pw" type="password" name="pw" class="form-control" placeholder="Password">
         <br/>
         <button type="submit" class="btn btn-primary">Login</button>
@@ -57,7 +48,7 @@
 
         Non sei ancora registrato? <a class="btn btn-link" href="signup">Registrati</a>
         <br/>
-        <a class="btn btn-primary" href="index">Torna alla home </a>
+        <a class="btn btn-warning" href="index">Torna alla home </a>
     </form>
     <script>
         <?php
