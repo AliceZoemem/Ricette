@@ -29,6 +29,12 @@
                 margin-left:5%;
             }
         }
+
+        @media screen and (max-width: 990px) {
+            .content{
+                margin-top: 0%;
+            }
+        }
     </style>
 
 

@@ -1,11 +1,11 @@
 <nav id="header" class="navbar navbar-expand-lg navbar-light container circleBehind">
-    <img id="logo" src="/img/logo2.png">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
+            <li class="nav-item small-col"><img src="/img/logo2.png"></li>
             <li class="nav-item">
                 <a href="/">Homepage</a>
             </li>
@@ -24,20 +24,20 @@
         </ul>
     </div>
 </nav>
-{{--<p>Profilo</p>
-        <a href="profilo" id="profilo" class="left" ></a>--}}
 
 <nav id="headerloggedpeople" class="hidden navbar navbar-expand-lg navbar-light container circleBehind">
-    <button class="navbar-toggler user" type="button" data-toggle="collapse" data-target="#profilo" aria-controls="profilo" aria-expanded="false" aria-label="Profile">
-    </button>
+
+    <img src="/img/user3.png"  class="navbar-toggler utente" data-toggle="collapse" data-target="#profilo" aria-controls="profilo" aria-expanded="false" aria-label="Profile">
+
     <a href="/profilo" id="profilo" class="left" ></a>
-    <img class="logo-responsive" src="/img/logo2.png">
+    {{--<img class="logo-responsive" src="/img/logo2.png">--}}
     <button class="navbar-toggler menu" type="button" data-toggle="collapse" data-target="#navbarauthSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarauthSupportedContent">
         <ul class="navbar-nav mr-auto">
+            <li class="nav-item small-col"><img src="/img/logo2.png"></li>
             <li class="nav-item">
                 <a href="/">Homepage</a>
             </li>

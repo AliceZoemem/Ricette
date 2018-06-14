@@ -28,9 +28,7 @@
 /*bello*/
 @font-face {
     font-family: SunFlower;
-    src: url('/fonts/Sunflower/Sunflower-Medium.ttf'),
-    url('/fonts/Sunflower/Sunflower-Bold.ttf'),
-    url('/fonts/Sunflower/Sunflower-Light.ttf');
+    src: url('/fonts/Sunflower/Sunflower-Medium.ttf')
 }
 body{
     font-family: SunFlower;
@@ -59,6 +57,7 @@ h1 span {
     z-index: 1;
 }
 .subtitle{
+    font: 170% Lobster;
     position: absolute;
     top: 60%;
     width: 80%;
@@ -79,9 +78,6 @@ h1 span {
 #topmenu nav{
     padding-top: 2%;
 }
-.navbar-collapse.collapse.show{
-    z-index: 1;
-}
 .mr-auto{
     width: 90%;
 }
@@ -90,7 +86,7 @@ nav.container
     margin: 0 auto;
     text-align: center;
 }
-nav.container a.left
+a.left
 {
     color: #000;
     border-radius: 50%;
@@ -121,7 +117,20 @@ nav.container p
     cursor: pointer;
     left:2%;
 }
-nav.circleBehind a:before, div.circleBehind a:after
+#profilo:hover{
+    color: black;
+    transform: scale(1.2);
+}
+nav.container a:hover
+{
+    color : #ffc107;
+    opacity: 1;
+    transform: translateX(-50%) translateY(-50%) scale(1.3);
+}
+
+
+
+.circleBehind a:before, .circleBehind a:after
 {
     position: absolute;
     top: 22px;
@@ -132,29 +141,38 @@ nav.circleBehind a:before, div.circleBehind a:after
     transform: translateX(-50%) translateY(-50%) scale(0.8);
     border-radius: 50%;
     background: transparent;
-    opacity: 0;
     transition: all 0.3s;
     z-index: -1;
 }
-nav.circleBehind a:after
+.circleBehind a:after
 {
     border-width: 2px;
     transition: all 0.4s;
 }
-nav.circleBehind a:hover:before
+.circleBehind li:hover:before
 {
     opacity: 1;
     transform: translateX(-50%) translateY(-50%) scale(1);
 }
-nav.circleBehind a:hover:after
+.circleBehind a:hover:after
 {
     opacity: 1;
     transform: translateX(-50%) translateY(-50%) scale(1.3);
 }
+
+
+
+
 #header li{
     display: inline-block;
 }
 /*Responsive Header*/
+.small-col{
+    width: 10%;
+}
+.small-col img{
+    width: 55%;
+}
 .navbar-toggler{
     float: left;
 }
@@ -165,18 +183,24 @@ nav.circleBehind a:hover:after
     display: inline-block;
 }
 /*Rightmenu*/
+#navbarNav{
+
+    font: 18px Lobster;
+    margin-bottom: 25%;
+}
 .menulateraledestro{
     text-align: center;
     width: 18%;
     position: absolute;
     right: 0%;
     margin: 1%;
+    margin-bottom: 10%;
 }
 #menu{
     flex-direction: column;
 }
 #menu li{
-    margin-bottom: 3%;
+    margin-bottom: 18%;
 }
 .menulateraledestro li{
     margin-bottom: 10%;
@@ -196,6 +220,13 @@ nav.circleBehind a:hover:after
 .radom_recipe{
     width: 100%;
     border-radius: 50%;
+}
+/*Cerca Ricette*/
+.btn-white{
+    color: #000;
+    background-color: #eee;
+    border-color: #ddd;
+    margin-left: 1%;
 }
 /*Footer*/
 .footer{
@@ -220,7 +251,6 @@ nav.circleBehind a:hover:after
     margin-top: 5%;
 }
 .category{
-    font:30px BufferflyKids;
     width:30%;
     margin-left: 3%;
 }
@@ -242,6 +272,7 @@ nav.circleBehind a:hover:after
     width: 10%;
 }
 h1{
+    color: #495057;
     text-transform: uppercase;
     text-align: center;
     font-size: 25px;
@@ -314,13 +345,11 @@ a:hover {
 .h1-left{
     text-align: left;
 }
-.user{
-    background:url('/img/user.png') no-repeat rgba(250,250,250, 0.8);
-    width: 3rem;
-    height: 2.5rem;
-    background-size: 80% 100%;
-    background-position-x: 50%;
-    background-position-y: 50%;
+.utente{
+    width: 10%;
+    border: none;
+    position: absolute;
+    top: 3vh;
 }
 .col-sm img{
     width: 100%;
@@ -329,8 +358,9 @@ a:hover {
 }
 #ingredienti{
     margin-top: 4%;
-    color:#888;
-    width:60%;
+    margin-left: 20%;
+    color: #888;
+    width: 60%;
     display: inline-block;
 }
 #ricerca{
@@ -338,9 +368,6 @@ a:hover {
     color:#888;
     width:60%;
     display: inline-block;
-}
-#search{
-    width: 10%;
 }
 .main-form{
     width:60%;
@@ -384,15 +411,16 @@ li{
 #inserisci_ingredienti{
     text-align: center;
 }
-#btn_cake{
-    /*position: absolute;*/
-    /*left: 90%;*/
+/*Profilo*/
+#crawler{
+    text-align: center;
+    width: 40%;
+    margin-top: 2%;
 }
-
 /*Responsive*/
 @media all and (max-width: 1090px) {
     .navbar-toggler.menu[aria-expanded="true"]{
-        top: 9%;
+
     }
 }
 @media all and (max-width: 350px) {
@@ -419,31 +447,6 @@ li{
         margin-left:5%;
         margin-top: 20%;
     }
-    .menu {
-        position: absolute;
-        left: 17%;
-        display: inline-block;
-        top: 5vh;
-    }
-    .user{
-        position: absolute;
-        left: 4%;
-        top: 5vh;
-        background:url('/img/user.png') no-repeat rgba(250,250,250, 0.8);
-        width: 3rem;
-        height: 2.5rem;
-        background-size: 80% 100%;
-        background-position-x: 50%;
-        background-position-y: 50%;
-    }
-    #profilo.collapsing{
-        left: -1.5%;
-        top: 5rem;
-    }
-    #profilo.show{
-        left: -1.5%;
-        top: 5rem;
-    }
     #navbarauthSupportedContent.collapsing{
         margin-top: 15%;
         background-color: rgba(250, 250, 250, 0.8);
@@ -467,12 +470,35 @@ li{
 }
 
 @media screen and (max-width: 990px) {
+    #rightmenu{
+        width: 100%;
+        top: 7vw;
+        position: absolute;
+        height: 20%;
+    }
+    #navbarNav{
+        margin: 0%;
+        height: 100%;
+    }
+    #button_add{    display: inline-block;}
+    #ingredienti{    display: block;}
+    #menu{
+        flex-direction: row;
+        height: 100%;
+    }
+    .radom_recipe {
+        width: 90%;
+        border-radius: 50%;
+    }
     .content{
-        margin-top: 10%;
+        margin-top: 25%;
+        width: 100%;
+        margin-left: 0%;
     }
     .menu{
         position: absolute;
-        left: 9%;
+        left: 15%;
+        top: 5vh;
     }
     #logo{
         position: absolute;
@@ -482,22 +508,21 @@ li{
         position: absolute;
         left: 17.5%;
     }
+    .small-col{
+        width: 100%;
+    }
+    .small-col img{
+        width: 10%;
+    }
     .disappare{
         display: none;
         visibility: hidden;
     }
     #topmenu{
-        position: absolute;
         display: inline-block;
     }
     .menulateraledestro{
         display: inline-block;
-    }
-    #rightmenu {
-        top: 1vw;
-        right: 10%;
-        float: left;
-        position: absolute;
     }
     #btn_cake {
         left: 90%;
@@ -520,33 +545,32 @@ li{
     }
     #profilo.show{
         position: absolute;
-        top: 10vw;
-        left: 0.5%;
+        top: 15vh;
+        left: 4%;
         background-color: rgba(250, 250, 250, 0.8);
     }
+
     #profilo.collapsing{
         position: absolute;
-        top: 10vw;
-        left: 0.5%;
+        top: 15vh;
+        left: 4%;
         background-color: rgba(250, 250, 250, 0.8);
     }
     .navbar-collapse.collapse.show{
+        z-index: 2;
         background-color: rgba(250, 250, 250, 0.8);
     }
     #navbarauthSupportedContent.show{
+        margin-top: 10vh;
         background-color: rgba(250, 250, 250, 0.8);
     }
     #navbarauthSupportedContent.collapsing{
+        margin-top: 10vh;
         background-color: rgba(250, 250, 250, 0.8);
-    }
-    #rightmenu .icon{
-        display: none;
-        visibility: hidden;
     }
     li img{
         width: 17rem;
     }
-
     li u{
         text-transform: uppercase;
         font-size: 100%;
@@ -559,8 +583,7 @@ li{
 }
 @media screen and (max-width: 850px) {
     .menu {
-        position: absolute;
-        left: 11%;
+
     }
     .logo-responsive {
         position: absolute;
@@ -577,8 +600,7 @@ li{
 
 @media screen and (max-width: 800px) {
     .menu {
-        position: absolute;
-        left: 17%;
+
     }
     .logo-responsive {
         position: absolute;
@@ -595,32 +617,23 @@ li{
 }
 
 @media screen and (max-width: 760px) {
-    #search{
-        width: 10%;
-        padding-left: 0%;
-    }
     #cerca_con_filtri {
         width: 25%;
     }
+    #navbarNav{font-size: 13px;}
     .main-form {
         margin-top: 4%;
     }
-    /*.content{*/
-        /*margin-top: 25%;*/
-    /*}*/
-    #gif{
+    .menu{
+        margin-left: 4%;
+    }
+    .utente{
+        width: 15%;
     }
 }
 
 
 @media screen and (max-width: 620px) {
-    #profilo{
-        margin-top: 4%;
-        margin-left: 3%;
-    }
-    #rightmenu{
-        width: 40%;
-    }
     .logo-responsive {
         width: 8%;
     }
@@ -633,24 +646,18 @@ li{
     .logo-responsive {
         margin-top: 8%;
     }
-    #profilo{
-        margin-top: 6%;
-        margin-left: 4%;
-    }
 }
 @media screen and (max-width: 470px) {
+    .utente{
+        width: 25%;
+    }
     .logo-responsive {
         width: 11%;
         left: 37%;
         margin-top: 10%;
     }
-    .menu {
-        position: absolute;
-        left: 19%;
-    }
-    #profilo{
-        margin-top: 16%;
-        margin-left: 4%;
+    .menu{
+        margin-left: 12%;
     }
 }
 @media screen and (max-width: 430px) {
@@ -683,12 +690,6 @@ li{
         left: 70%;
         top: 2%;
     }
-    .menu{
-        margin-top: 4%;
-    }
-    .user{
-        margin-top: 4%;
-    }
     #navbarauthSupportedContent.collapsing{
         margin-left: 8%;
         margin-top: 38%;
@@ -719,8 +720,7 @@ li{
         top: 69%;
     }
     .menu {
-        position: absolute;
-        left: 23%;
+
     }
 }
 /*End Responsive*/

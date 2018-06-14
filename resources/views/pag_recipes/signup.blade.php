@@ -7,6 +7,11 @@
         .content{
             width: 100%;
         }
+        @media screen and (max-width: 990px) {
+            .content{
+                margin-top: 0%;
+            }
+        }
     </style>
     <script>
         $(document).ready(function () {

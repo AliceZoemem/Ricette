@@ -3,7 +3,7 @@
 @section('content')
 
     <div id="body">
-        <form class="main-form" action="/cerca_ricetta" method="post">
+        <form id="ricerca_generica" class="main-form" action="/cerca_ricetta" method="post">
             <input id="ricerca" type="text" name="ricerca" class="lower form-control" placeholder="Ricerca..."/>
             <button id="search" class="btn btn-warning">
                 <a class="text-muted">
@@ -12,7 +12,7 @@
             </button>
             {{ csrf_field() }}
         </form>
-        <form class="main-form form-width filter" action="/filter" method="post">
+        <form id="filtri_generici" class="main-form form-width filter" action="/filter" method="post">
             <input id="tipo" type="text" name="tipo" class="lower form-control filter" placeholder="Tipo"/>
             <input id="tempo_cottura" type="text" name="tempo_cottura" class="lower form-control filter" placeholder="Tempo cottura"/>
             <input id="tempo_preparazione" type="text" name="tempo_preparazione" class="lower form-control filter" placeholder="Tempo preparazione"/>
@@ -43,7 +43,7 @@
                             }
 
                             echo '<div class="col-sm">';
-                            echo '<a href=ricetta/'.$singola_ricetta['id'].'>';
+                            echo '<a href="/ricetta/'.$singola_ricetta['id'].'">';
     //                        echo "<div class='single_recipe'>";
                             echo "<h1>";
                             echo $singola_ricetta['name_recipe'];
@@ -58,10 +58,7 @@
 
                             $x++;
                         }
-                        echo '<form class="main-form" action="/all" method="get">';
-                        echo csrf_field();
-                        echo '<button type="submit" class="btn btn-warning" id="button_all">Carica altri risultati</button>';
-                        echo '</form>';
+
                     }catch (Exception $ex){
 
                     }
@@ -80,67 +77,71 @@
         ?>
         <?php
 
-            $nome = 'var FiltroNomi=[';
-            foreach($filtri['names'] as $num=>$name){
-                if($num != 0){
-                    $nome .= ', "';
-                    $nome.= $name['name_recipe'] .'"';
-                }else
-                    $nome.= '"' .$name['name_recipe'] .'"';
-            }
-            $nome.=']; ';
+            try{
+                $nome = 'var FiltroNomi=[';
+                foreach($filtri['names'] as $num=>$name){
+                    if($num != 0){
+                        $nome .= ', "';
+                        $nome.= $name['name_recipe'] .'"';
+                    }else
+                        $nome.= '"' .$name['name_recipe'] .'"';
+                }
+                $nome.=']; ';
 
-            $tipo = 'var FiltroTipo=[';
-            foreach($filtri['types'] as $num=>$name){
-                if($num != 0){
-                    $tipo .= ', "';
-                    $tipo.= $name['category'] .'"';
-                }else
-                    $tipo.= '"' .$name['category'] .'"';
-            }
-            $tipo.=']; ';
+                $tipo = 'var FiltroTipo=[';
+                foreach($filtri['types'] as $num=>$name){
+                    if($num != 0){
+                        $tipo .= ', "';
+                        $tipo.= $name['category'] .'"';
+                    }else
+                        $tipo.= '"' .$name['category'] .'"';
+                }
+                $tipo.=']; ';
 
-            $dose = 'var FiltroDosi=[';
-            foreach($filtri['doses'] as $num=>$name){
-                if($num != 0){
-                    $dose .= ', "';
-                    $dose.= $name['doses_per_person'] .'"';
-                }else
-                    $dose.= '"' .$name['doses_per_person'] .'"';
-            }
-            $dose.=']; ';
+                $dose = 'var FiltroDosi=[';
+                foreach($filtri['doses'] as $num=>$name){
+                    if($num != 0){
+                        $dose .= ', "';
+                        $dose.= $name['doses_per_person'] .'"';
+                    }else
+                        $dose.= '"' .$name['doses_per_person'] .'"';
+                }
+                $dose.=']; ';
 
-            $diff = '<option value="">nessuna</option>';
-            foreach($filtri['difficulties'] as $name){
-                if($name['difficulty'] != "-")
-                    $diff .= '<option value="'.$name['difficulty'].'">'.$name['difficulty'].'</option>';
-            }
-            $cottura = 'var FiltroCooking=[';
-            foreach($filtri['cooking_times'] as $num=>$name){
-                if($num != 0){
-                    $cottura .= ', "';
-                    $cottura.= $name['cooking_time'] .'"';
-                }else
-                    $cottura.= '"' .$name['cooking_time'] .'"';
-            }
-            $cottura.=']; ';
-            $preparazione = 'var FiltroPreparation=[';
-            foreach($filtri['preparation_times'] as $num=>$name){
-                if($num != 0){
-                    $preparazione .= ', "';
-                    $preparazione.= $name['preparation_time'] .'"';
-                }else
-                    $preparazione.= '"' .$name['preparation_time'] .'"';
+                $diff = '<option value="">nessuna</option>';
+                foreach($filtri['difficulties'] as $name){
+                    if($name['difficulty'] != "-")
+                        $diff .= '<option value="'.$name['difficulty'].'">'.$name['difficulty'].'</option>';
+                }
+                $cottura = 'var FiltroCooking=[';
+                foreach($filtri['cooking_times'] as $num=>$name){
+                    if($num != 0){
+                        $cottura .= ', "';
+                        $cottura.= $name['cooking_time'] .'"';
+                    }else
+                        $cottura.= '"' .$name['cooking_time'] .'"';
+                }
+                $cottura.=']; ';
+                $preparazione = 'var FiltroPreparation=[';
+                foreach($filtri['preparation_times'] as $num=>$name){
+                    if($num != 0){
+                        $preparazione .= ', "';
+                        $preparazione.= $name['preparation_time'] .'"';
+                    }else
+                        $preparazione.= '"' .$name['preparation_time'] .'"';
+
+                }
+                $preparazione.=']; ';
+                $str = $preparazione .$nome . $tipo .$cottura. $dose . '$( "#tipo" ).autocomplete({source: FiltroTipo});'
+                        .' $( "#tempo_cottura" ).autocomplete({source: FiltroCooking});'
+                        .' $( "#tempo_preparazione" ).autocomplete({source: FiltroPreparation});'
+                        .' $( "#ricerca" ).autocomplete({source: FiltroNomi});'
+                        .' $( "#dosi_persone" ).autocomplete({source: FiltroDosi});'
+                        ."$('#difficolta').html('".$diff."')";
+                echo $str;
+            }catch(Exception $ex){
 
             }
-            $preparazione.=']; ';
-            $str = $preparazione .$nome . $tipo .$cottura. $dose . '$( "#tipo" ).autocomplete({source: FiltroTipo});'
-                    .' $( "#tempo_cottura" ).autocomplete({source: FiltroCooking});'
-                    .' $( "#tempo_preparazione" ).autocomplete({source: FiltroPreparation});'
-                    .' $( "#ricerca" ).autocomplete({source: FiltroNomi});'
-                    .' $( "#dosi_persone" ).autocomplete({source: FiltroDosi});'
-                    ."$('#difficolta').html('".$diff."')";
-            echo $str;
         ?>
 
     </script>

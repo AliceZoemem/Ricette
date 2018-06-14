@@ -23,6 +23,16 @@
 
         <button type="submit" class="btn btn-warning" id="button_modifica">MODIFICA PROFILO</button>
     </form>
+    <form class="main-form" action="/manage_crawler" method="post">
+        {{ csrf_field() }}
+        <?php
+            try{
+                echo $crawler;
+            }catch(Exception $ex){
+            }
+        ?>
+    </form>
+
 
     <script>
         <?php

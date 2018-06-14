@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Crypt;
 class Home extends Controller
 {
     const METHOD = 'aes-256-ctr';
+
     function encrypt_decrypt( $string, $action) {
         // you may change these values to your own
         $secret_key = 'my_simple_secret_key';
@@ -50,6 +51,7 @@ class Home extends Controller
     }
 
     public function getingredients(){
+        Session::forget('array_ingredienti');
         $item_ingredienti = Ingredient::all();
         $rightmenu =\Request::get('rightmenu');
         $check_auth = User::where('id', Session::get('session_user'))->get();
@@ -61,17 +63,21 @@ class Home extends Controller
                 $script .= "$('#profilo').text('" . $lettera . "');";
                 return $this->index($script);
             }else{
-                return response()->view('pag_recipes.index',
-                    ['ingredientifromdb' => $item_ingredienti
-
+                return response()->view('pag_recipes.index', [
+                        'rightmenu' => $rightmenu,
+                        'ingredientifromdb' => $item_ingredienti
                     ]);
             }
         }else
-            return response()->view('pag_recipes.index', ['ingredientifromdb' => $item_ingredienti]);
-
+            return response()->view('pag_recipes.index', [
+                'rightmenu' => $rightmenu,
+                'ingredientifromdb' => $item_ingredienti,
+                'rightmenu' => $rightmenu
+            ]);
     }
 
     public function home(){
+        Session::forget('array_ingredienti');
         $rightmenu =\Request::get('rightmenu');
         if(Session::get('session_user') != null){
             $check_auth = User::where('id', Session::get('session_user'))->get();
@@ -80,18 +86,22 @@ class Home extends Controller
                 $script = "$('#headerloggedpeople').removeClass('hidden'); ";
                 $script .= "$('#header').hide();";
                 $script .= "$('#profilo').text('" . $lettera . "');";
-                return response()->view('pag_recipes.homepage', ['script' => $script]);
+                return response()->view('pag_recipes.homepage', ['script' => $script, 'rightmenu' => $rightmenu]);
             }else
-                return response()->view('pag_recipes.homepage');
+                return response()->view('pag_recipes.homepage', ['rightmenu' => $rightmenu]);
         }
-        return response()->view('pag_recipes.homepage');
+        return response()->view('pag_recipes.homepage', ['rightmenu' => $rightmenu]);
     }
     public function index($script){
         $rightmenu =\Request::get('rightmenu');
         $item_ingredienti = Ingredient::all();
+        Session::forget('array_ingredienti');
         return response()->view('pag_recipes.index', [
-                'ingredientifromdb' => $item_ingredienti, 'script' => $script]
-        );
+            'rightmenu' => $rightmenu,
+            'ingredientifromdb' => $item_ingredienti,
+            'script' => $script,
+            'rightmenu' => $rightmenu
+        ]);
     }
 
     public function index_ingredients_auth($script, $id_cookie){
@@ -99,22 +109,320 @@ class Home extends Controller
         $item_ingredienti = Ingredient::all();
         Session::put('session_user', $id_cookie);
         return response()->view('pag_recipes.index', [
-            'ingredientifromdb' => $item_ingredienti, 'script' => $script]
-        );
+            'rightmenu' => $rightmenu,
+            'ingredientifromdb' => $item_ingredienti,
+            'script' => $script
+        ]);
     }
 
     public function getrecipes(){
         $rightmenu =\Request::get('rightmenu');
         $item_ingredienti = Ingredient::all();
         return view('pag_recipes.index', [
+            'rightmenu' => $rightmenu,
             'ingredientifromdb' => $item_ingredienti]);
     }
+
+    public function remove($id = null){
+        if($id != null) {
+            $script = '';
+            if(Session::get('session_user') != null){
+                $check_auth = User::where('id', Session::get('session_user'))->get();
+                if(!$check_auth->isEmpty()) {
+                    $lettera = strtoupper(substr($check_auth[0]['name'], 0, 1));
+                    $script .= "$('#headerloggedpeople').removeClass('hidden'); ";
+                    $script .= "$('#header').hide();";
+                    $script .= "$('#profilo').text('" . $lettera . "');";
+                }else{
+                    Session::forget('session_user');
+                }
+            }
+            $item_ingredienti = Ingredient::all();
+            $rightmenu = \Request::get('rightmenu');
+            foreach(Session::get('array_ingredienti') as $key => $ing){
+                if(substr($ing, 0 , strpos($ing, '#')) == $id){
+                    Session::pull('array_ingredienti.'. $key);
+                    $script .= '$("#ing'.$id.'").hide();';
+                }
+            }
+            $lista_ricerca = '';
+            $attiva_ricerca = '';
+            if(Session::get('array_ingredienti') != null){
+                $script .= '$("#avvia").hide();';
+                foreach (Session::get('array_ingredienti') as $ing){
+                    $id = substr($ing, 0, strpos($ing, '#'));
+                    $name = substr($ing, strpos($ing, '#') + 1, strlen($ing));
+                    $lista_ricerca .= '<li id="ing' . $id . '" class="ingrediente_inserito">' . $name .
+                        '<a href="/remove/' . $id . '">' .
+                        '<button id="btn' . $id . '" name="ing" class="btn btn-white" type="submit" style="font-size: 13px">x</button>' .
+                        '</a>';
+                    '</li>';
+                }
+                $recipes = array();
+                foreach (Session::get('array_ingredienti') as $value){
+                    $id = substr($value, 0, strpos($value, '#'));
+                    array_push($recipes, Recipe::whereHas('ingredients', function ($query) use ($id){
+                        $query->where('id',$id);
+                    })->get());
+
+                }
+                $vett_ids_ingredients = array();
+                foreach($item_ingredienti as $ingredient_table) {
+                    foreach (Session::get('array_ingredienti') as $single_ingredient_gave){
+                        $name_ingredient = substr($single_ingredient_gave, strpos($single_ingredient_gave, '#')+ 1, strlen($single_ingredient_gave));
+                        if($name_ingredient == $ingredient_table['name']){
+                            array_push($vett_ids_ingredients, $ingredient_table['id']);
+                        }
+                    }
+
+                };
+                $vett_ids_recipes = array();
+                $recipes = array();
+                $vett_query = array();
+                $vett_ids_recipes_finded = array();
+                foreach ($vett_ids_ingredients as $id){
+                    array_push($recipes, Recipe::whereHas('ingredients', function ($query) use ($id, $vett_query){
+                        //foreach ($id_ingredients as $id){
+                        $query->where('id',$id);
+                        //}
+
+                    })->get());
+                }
+                foreach ($recipes as $single_recipe){
+                    foreach ($single_recipe as $id_single_recipe) {
+                        array_push($vett_ids_recipes, $id_single_recipe->id);
+                    }
+                }
+                $vett_count_ids = array_count_values($vett_ids_recipes);
+                foreach($vett_count_ids as $key => $value){
+                    if($value > 1){
+                        array_push($vett_ids_recipes_finded, $key);
+                    }
+                }
+                if($vett_ids_recipes_finded == null){
+                    foreach($vett_count_ids as $key => $value){
+                        array_push($vett_ids_recipes_finded, $key);
+                    }
+
+                }
+                $attiva_ricerca .= '<button id="btncerca" type="submit"  name="cerca" class="btn btn-warning" style="font-size: 17px" onclick="cerca_ricetta()">CERCA</button>'.
+                    '<label id="trovato">Ricette trovate: '. count($vett_ids_recipes_finded) .'</label></p>';
+            }
+            return view('pag_recipes.index', [
+                'script' => $script,
+                'rightmenu' => $rightmenu,
+                'attiva_ricerca' => $attiva_ricerca,
+                'lista_ricerca' => $lista_ricerca,
+                'ingredientifromdb' => $item_ingredienti
+            ]);
+        }
+    }
+
     public function add_research(){
-//        $ingredient = request('ingredienti');
-        dd(request()->all());
+        $script = '';
+        if(Session::get('session_user') != null){
+            $check_auth = User::where('id', Session::get('session_user'))->get();
+            if(!$check_auth->isEmpty()) {
+                $lettera = strtoupper(substr($check_auth[0]['name'], 0, 1));
+                $script .= "$('#headerloggedpeople').removeClass('hidden'); ";
+                $script .= "$('#header').hide();";
+                $script .= "$('#profilo').text('" . $lettera . "');";
+            }else{
+                Session::forget('session_user');
+            }
+        }
+        $presenza = false;
+        $ingrediente = request('ingredienti');
+        $rightmenu =\Request::get('rightmenu');
+        $item_ingredienti = Ingredient::all();
+        $lista_ricerca = '';
+        $attiva_ricerca = '';
+        $check_ingredient = Ingredient::where('name', $ingrediente)->get();
+        if(!$check_ingredient->isEmpty() && $ingrediente != null) {
+            if(Session::get('array_ingredienti') == null){
+                Session::push('array_ingredienti', $check_ingredient[0]['id'] . '#' . $ingrediente);
+            }
+            foreach (Session::get('array_ingredienti') as $ing){
+                if($check_ingredient[0]['id'] .'#' . $ingrediente == $ing && $presenza != true)
+                    $presenza = true;
+
+                $id = substr($ing, 0, strpos($ing, '#'));
+                $name = substr($ing, strpos($ing, '#') + 1, strlen($ing));
+                $lista_ricerca .= '<li id="ing' . $id . '" class="ingrediente_inserito">' . $name .
+                    '<a href="/remove/' . $id . '">' .
+                    '<button id="btn' . $id . '" name="ing" class="btn btn-white" type="submit" style="font-size: 13px">x</button>' .
+                    '</a>';
+                    '</li>';
+            }
+            if($presenza == false){
+                Session::push('array_ingredienti', $check_ingredient[0]['id'] . '#' . $ingrediente);
+                $lista_ricerca .= '<li id="ing' . $check_ingredient[0]['id'] . '" class="ingrediente_inserito">' . $ingrediente .
+                   '<a href="/remove/' . $check_ingredient[0]['id'] . '">' .
+                   '<button id="btn' . $check_ingredient[0]['id'] . '"  name="ing" class="btn btn-white" type="submit" style="font-size: 13px">x</button>' .
+                   '</a>';
+                   '</li>';
+            }
+            $vett_ids_ingredients = array();
+            foreach($item_ingredienti as $ingredient_table) {
+                foreach (Session::get('array_ingredienti') as $single_ingredient_gave){
+                    $name_ingredient = substr($single_ingredient_gave, strpos($single_ingredient_gave, '#')+ 1, strlen($single_ingredient_gave));
+                    if($name_ingredient == $ingredient_table['name']){
+                        array_push($vett_ids_ingredients, $ingredient_table['id']);
+                    }
+                }
+
+            };
+            $vett_ids_recipes = array();
+            $recipes = array();
+            $vett_query = array();
+            $vett_ids_recipes_finded = array();
+            //ricette che hanno quell ingrediente
+            foreach ($vett_ids_ingredients as $id){
+                array_push($recipes, Recipe::whereHas('ingredients', function ($query) use ($id, $vett_query){
+                    //foreach ($id_ingredients as $id){
+                    $query->where('id',$id);
+                })->get());
+            }
+            //tutti gli id delle ricette che hanno quell ingrediente
+            foreach ($recipes as $single_recipe){
+                foreach ($single_recipe as $id_single_recipe) {
+                    array_push($vett_ids_recipes, $id_single_recipe->id);
+                }
+            }
+
+            //conta il numero di occorrenze per ogni ricetta
+            $vett_count_ids = array_count_values($vett_ids_recipes);
+            //mette in un vettore tutte le ricette trovate con quegli ingredienti
+            foreach($vett_count_ids as $key => $value){
+                if($value == count($recipes)){
+                    array_push($vett_ids_recipes_finded, $key);
+                }
+            }
+
+            $attiva_ricerca .= '<button id="btncerca" type="submit"  name="cerca" class="btn btn-warning" style="font-size: 17px" >CERCA</button>'.
+                '<label id="trovato">Ricette trovate: '. count($vett_ids_recipes_finded) .'</label></p>';
+            $script .= '$("#avvia").hide();';
+
+        }else{
+            if(Session::get('array_ingredienti') != null) {
+                foreach (Session::get('array_ingredienti') as $ing) {
+                    $id = substr($ing, 0, strpos($ing, '#'));
+                    $name = substr($ing, strpos($ing, '#') + 1, strlen($ing));
+                    $lista_ricerca .= '<li id="ing' . $id . '" class="ingrediente_inserito">' . $name .
+                        '<a href="/remove/' . $id . '">' .
+                        '<button id="btn' . $id . '" name="ing" class="btn btn-white" type="submit" style="font-size: 13px">x</button>' .
+                        '</a>';
+                    '</li>';
+                }
+                $vett_ids_ingredients = array();
+                foreach ($item_ingredienti as $ingredient_table) {
+                    foreach (Session::get('array_ingredienti') as $single_ingredient_gave) {
+                        $name_ingredient = substr($single_ingredient_gave, strpos($single_ingredient_gave, '#') + 1, strlen($single_ingredient_gave));
+                        if ($name_ingredient == $ingredient_table['name']) {
+                            array_push($vett_ids_ingredients, $ingredient_table['id']);
+                        }
+                    }
+
+                };
+                $vett_ids_recipes = array();
+                $recipes = array();
+                $vett_query = array();
+                $vett_ids_recipes_finded = array();
+                foreach ($vett_ids_ingredients as $id) {
+                    array_push($recipes, Recipe::whereHas('ingredients', function ($query) use ($id, $vett_query) {
+                        $query->where('id', $id);
+                    })->get());
+                }
+                foreach ($recipes as $single_recipe){
+                    foreach ($single_recipe as $id_single_recipe) {
+                        array_push($vett_ids_recipes, $id_single_recipe->id);
+                    }
+                }
+                $vett_count_ids = array_count_values($vett_ids_recipes);
+                foreach ($vett_count_ids as $key => $value) {
+                    if ($value == count($recipes)) {
+                        array_push($vett_ids_recipes_finded, $key);
+                    }
+                }
+                $attiva_ricerca .= '<button id="btncerca" type="submit"  name="cerca" class="btn btn-warning" style="font-size: 17px" >CERCA</button>' .
+                    '<label id="trovato">Ricette trovate: ' . count($vett_ids_recipes_finded) . '</label></p>';
+                $script .= '$("#avvia").hide();';
+            }else
+                return view('pag_recipes.index', ['rightmenu' => $rightmenu,'ingredientifromdb' => $item_ingredienti, 'script' => $script]);
+        }
+        return view('pag_recipes.index', [
+            'script' => $script,
+            'rightmenu' => $rightmenu,
+            'attiva_ricerca' => $attiva_ricerca,
+            'lista_ricerca' => $lista_ricerca,
+            'ingredientifromdb' => $item_ingredienti
+        ]);
+    }
+
+    public function giveingredient(){
+        $script = '';
+        if(Session::get('session_user') != null){
+            $check_auth = User::where('id', Session::get('session_user'))->get();
+            if(!$check_auth->isEmpty()) {
+                $lettera = strtoupper(substr($check_auth[0]['name'], 0, 1));
+                $script .= "$('#headerloggedpeople').removeClass('hidden'); ";
+                $script .= "$('#header').hide();";
+                $script .= "$('#profilo').text('" . $lettera . "');";
+            }else{
+                Session::forget('session_user');
+            }
+        }
+        $script .= "$('#filtri_generici').hide();";
+        $script .= "$('#ricerca_generica').hide();";
+        $vett_ids_ingredients = array();
+        $rightmenu =\Request::get('rightmenu');
+        $ingredients_gave = Session::get('array_ingredienti');
+        $item_ingredienti = Ingredient::all();
+        foreach($item_ingredienti as $ingredient_table) {
+            foreach ($ingredients_gave as $single_ingredient_gave){
+                $name_ingredient = substr($single_ingredient_gave, strpos($single_ingredient_gave, '#')+ 1, strlen($single_ingredient_gave));
+                if($name_ingredient == $ingredient_table['name']){
+                    array_push($vett_ids_ingredients, $ingredient_table['id']);
+                }
+            }
+
+        };
+        $vett_ids_recipes = array();
+        $recipes = array();
+        $vett_query = array();
+        $vett_ids_recipes_finded = array();
+        foreach ($vett_ids_ingredients as $id){
+            array_push($recipes, Recipe::whereHas('ingredients', function ($query) use ($id, $vett_query){
+                $query->where('id',$id);
+            })->get());
+        }
+
+        foreach ($recipes as $single_recipe){
+            foreach ($single_recipe as $id_single_recipe) {
+                array_push($vett_ids_recipes, $id_single_recipe->id);
+            }
+        }
+
+        $vett_count_ids = array_count_values($vett_ids_recipes);
+        foreach($vett_count_ids as $key => $value){
+            if($value == count($recipes)){
+                array_push($vett_ids_recipes_finded, Recipe::find($key));
+            }
+        }
+        if(count($vett_ids_recipes_finded) % 3  == 1)
+            $script .= '$(".last").width("33%");';
+        if(count($vett_ids_recipes_finded) % 3  == 2)
+            $script .= '$(".last").width("66%");';
+        return view('/pag_recipes.all', [
+            'rightmenu' => $rightmenu,
+            'script' => $script,
+            'ricette' => $vett_ids_recipes_finded,
+            'ingredientifromdb' => $item_ingredienti
+        ]);
     }
 
     public function getallrecipes(){
+        Session::forget('array_ingredienti');
         $vettore_filtri = array();
         $rightmenu =\Request::get('rightmenu');
         $names = Recipe::distinct()->get(['name_recipe']);
@@ -158,10 +466,10 @@ class Home extends Controller
         }
     }
     public function cerca_ricetta(){
+        $script = '';
         $rightmenu =\Request::get('rightmenu');
         $name_recipe= strtolower(request('ricerca'));
         $get_result = Recipe::where('name_recipe', $name_recipe)->get();
-        $rightmenu =\Request::get('rightmenu');
         $names = Recipe::distinct()->get(['name_recipe']);
         $difficulties = Recipe::distinct()->get(['difficulty']);
         $preparation_times = Recipe::distinct()->get(['preparation_time']);
@@ -175,7 +483,6 @@ class Home extends Controller
         $vettore_filtri['types'] = $types->toArray();
         $vettore_filtri['doses'] = $doses->toArray();
 
-        $script = '$("#button_all").hide();';
         if(count($get_result) % 3  == 1)
             $script .= '$(".last").width("33%");';
         return response()->view('pag_recipes.all', [
@@ -189,6 +496,7 @@ class Home extends Controller
 
     public function choose_category($value = null){
         if($value != null){
+            $script = '';
             $rightmenu =\Request::get('rightmenu');
             $get_result = Recipe::where('category', $value)->get();
             $names = Recipe::distinct()->get(['name_recipe']);
@@ -204,12 +512,12 @@ class Home extends Controller
             $vettore_filtri['types'] = $types->toArray();
             $vettore_filtri['doses'] = $doses->toArray();
 
-            $script = '$("#button_all").hide();';
             if(count($get_result) % 3  == 1)
                 $script .= '$(".last").width("33%");';
             if(count($get_result) % 3  == 2)
                 $script .= '$(".last").width("66%");';
             return response()->view('pag_recipes.all', [
+                    'rightmenu' => $rightmenu,
                     'ricette' => $get_result,
                     'filtri' => $vettore_filtri,
                     'script' => $script
@@ -241,7 +549,7 @@ class Home extends Controller
 
 
         $script = '';
-        if($tipo != null | $tempo_cottura != null | $tempo_preparazione != null | $difficolta != null) {
+        if($tipo != null | $tempo_cottura != null | $tempo_preparazione != null | $difficolta != null | $dosi != null) {
             if($tipo != null && $difficolta != null && $tempo_preparazione != null && $tempo_cottura != null && $dosi != null)
                 $get_result = Recipe::where('category', $tipo)->where('difficulty', $difficolta)->where('preparation_time', $tempo_preparazione)->where('cooking_time', $tempo_cottura)->where('doses_per_person', $dosi)->get();
             //tre
@@ -306,9 +614,8 @@ class Home extends Controller
                 $get_result = Recipe::where('cooking_time', $tempo_cottura)->get();
             elseif($difficolta != null)
                 $get_result = Recipe::where('difficulty', $difficolta)->get();
-            elseif($tempo_preparazione != null)
+            elseif($dosi != null)
                 $get_result = Recipe::where('doses_per_person', $dosi)->get();
-            $script = '$("#button_all").hide();';
         }else
             $get_result = Recipe::orderBy('id', 'desc')->take(30)->get();
         if(count($get_result) % 3  == 1)
@@ -316,15 +623,12 @@ class Home extends Controller
         if(count($get_result) % 3 == 2)
             $script .= '$(".last").width("66%");';
         return response()->view('pag_recipes.all', [
+                'rightmenu' => $rightmenu,
                 'ricette' => $get_result,
                 'filtri' => $vettore_filtri,
                 'script' => $script
             ]
         );
-
-
-//        $script = '$("#button_all").hide();';
-//        dd(request()->all());
 
     }
 
@@ -354,24 +658,10 @@ class Home extends Controller
         return view('/pag_recipes.recipesfortwo');
     }
 
-//    public static function getrandomrecipes(){
-//        $vett_recipe = array();
-//        if(Recipe::count() <= 5){
-//            if(Recipe::count() == 0){
-//                $create = '<p>Non ci sono ricette nel database</p>';
-//                return view('pag_recipes.rightmenu', ['rightmenu' => $create]);
-//            }
-//        }else{
-//            for ($i = 0; $i < 5; $i++){
-//                array_push($vett_recipe, Recipe::find(rand(1 , Recipe::count())));
-//            }
-//            return response()->view('pag_recipes.rightmenu',['ricette_random' => $vett_recipe]);
-//        }
-//
-//    }
-
     public function stamponerecipe($number = null){
+        Session::forget('array_ingredienti');
         if($number != null){
+            $rightmenu =\Request::get('rightmenu');
             if(Session::get('session_user') != null){
                 $check_auth = User::where('id', Session::get('session_user'))->get();
                 if(!$check_auth->isEmpty()) {
@@ -399,74 +689,12 @@ class Home extends Controller
             $pivot['amount'] = $amount_ingredient;
             $pivot['ingredient'] = $name_ingredient;
             return view('/pag_recipes.singlerecipe', [
+                'rightmenu' => $rightmenu,
                 'ricetta' => $recipe ,
                 'pivot' => $pivot,
                 'script' => $script
             ]);
         }
-    }
-
-    public function giveingredient(){
-        $vett_ids_ingredients = array();
-        $ingredients_gave = $_POST['ingredients'];
-        $item_ingredienti = Ingredient::all();
-        foreach($item_ingredienti as $ingredient_table) {
-            foreach ($ingredients_gave as $single_ingredient_gave){
-                if($single_ingredient_gave == $ingredient_table['name']){
-                    array_push($vett_ids_ingredients, $ingredient_table['id']);
-                }
-            }
-
-        };
-        $vett_ids_recipes = array();
-        $recipes = array();
-        $vett_query = array();
-        $vett_ids_recipes_finded = array();
-        foreach ($vett_ids_ingredients as $id){
-            array_push($recipes, Recipe::whereHas('ingredients', function ($query) use ($id, $vett_query){
-                //foreach ($id_ingredients as $id){
-                $query->where('id',$id);
-                //}
-
-            })->get());
-        }
-        foreach ($recipes as $single_recipe){
-            foreach ($single_recipe as $id_single_recipe) {
-                array_push($vett_ids_recipes, $id_single_recipe->id);
-            }
-        }
-        $vett_count_ids = array_count_values($vett_ids_recipes);
-        foreach($vett_count_ids as $key => $value){
-            if($value > 1){
-                array_push($vett_ids_recipes_finded, $key);
-            }
-        }
-        if($vett_ids_recipes_finded == null){
-            foreach($vett_count_ids as $key => $value){
-                array_push($vett_ids_recipes_finded, $key);
-            }
-
-        }
-
-//        while(!feof($myfile)) {
-//            $riga = fgets($myfile);
-//            if(strpos($riga, '<div id=') > 0){
-//                foreach ($vett_ids_recipes_finded as $result){
-//                    $div_results = '<img id="risultato" src="'.Recipe::find($result)->recipe_img.'" alt="'.Recipe::find($result)->name_recipe.'">'.
-//                        '<h1><a href="singlerecipe/'.$result.'"><u>'.Recipe::find($result)->name_recipe.'</u>'.'</a></h1>'.
-//                        '<li> difficolta: '.Recipe::find($result)->difficulty.
-//                        '<li> dosi: '.Recipe::find($result)->doses_per_person.'</li>'.
-//                        '<li> tempo di cottura: '.Recipe::find($result)->cooking_time.'</li>'.
-//                        '<li> tempo di preparazione: '.Recipe::find($result)->preparation_time.'</li>'.
-//                        '</br>'
-//                    ;
-//
-//                    fwrite($myfile, $div_results);
-//                }
-//            }
-//        }
-
-        return view('/pag_recipes.results');
     }
 
     public function signup(){
@@ -584,14 +812,19 @@ class Home extends Controller
     }
 
     public function see_auth($page){
+        Session::forget('array_ingredienti');
         if(Session::get('session_user') != null){
             $check_auth = User::where('id', Session::get('session_user'))->get();
             if(!$check_auth->isEmpty()) {
+                $rightmenu =\Request::get('rightmenu');
                 $lettera = strtoupper(substr($check_auth[0]['name'], 0, 1));
                 $script = "$('#headerloggedpeople').removeClass('hidden'); ";
                 $script .= "$('#header').hide();";
                 $script .= "$('#profilo').text('" . $lettera . "');";
-                return view('pag_recipes.homepage', ['script' => $script]);
+                return view('pag_recipes.homepage', [
+                    'script' => $script,
+                    'rightmenu' => $rightmenu
+                ]);
             }else{
                 Session::forget('session_user');
                 return  view('pag_recipes.'.$page);
@@ -602,6 +835,8 @@ class Home extends Controller
     }
 
     public function change_profile(){
+        Session::forget('array_ingredienti');
+        $rightmenu =\Request::get('rightmenu');
         if(Session::get('session_user') != null){
             $nome = strtolower(request('nome'));
             $cognome = strtolower(request('cognome'));
@@ -621,7 +856,10 @@ class Home extends Controller
                     $script .= "$('#profilo').text('". $lettera ."');";
                     $script .= "$('#pw').addClass('needs-validation');";
                     $script .= "$('#conf-pw').addClass('needs-validation');";
-                    return view('/pag_recipes.profilo', ['script' => $script, 'information' => $information]);
+                    return view('/pag_recipes.profilo', ['script' => $script,
+                        'information' => $information,
+                        'rightmenu' => $rightmenu
+                    ]);
                 }
                 if($email != null){
                     $check_email = User::where('email', $email)->get();
@@ -630,13 +868,21 @@ class Home extends Controller
                         $script .= "$('#profilo').text('". $lettera ."');";
                         $script .= "$('#email').addClass('needs-validation');";
                         $script .= "alert('Email gia' in uso');";
-                        return view('/pag_recipes.profilo', ['script' => $script, 'information' => $information]);
+                        return view('/pag_recipes.profilo', [
+                            'script' => $script,
+                            'information' => $information,
+                            'rightmenu' => $rightmenu
+                        ]);
                     }
                     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                         $lettera = strtoupper(substr($information['name'], 0, 1));
                         $script .= "$('#profilo').text('". $lettera ."');";
                         $script .= "$('#email').addClass('needs-validation');";
-                        return view('/pag_recipes.profilo', ['script' => $script, 'information' => $information]);
+                        return view('/pag_recipes.profilo', [
+                            'script' => $script,
+                            'information' => $information,
+                            'rightmenu' => $rightmenu
+                        ]);
                     }
                 }
                 $new_pw = $this->encrypt_decrypt($pw, 'e');
@@ -660,19 +906,31 @@ class Home extends Controller
                             $script .= "$('#pw').addClass('needs-validation');";
                             $script .= "$('#conf-pw').addClass('needs-validation');";
                             $script .= "alert('Usa una password diversa da quella vecchia');";
-                            return view('/pag_recipes.profilo', ['script' => $script, 'information' => $information]);
+                            return view('/pag_recipes.profilo', [
+                                'script' => $script,
+                                'information' => $information,
+                                'rightmenu' => $rightmenu
+                            ]);
                         }
                     }
                     $check_auth = User::where('id', Session::get('session_user'))->get();
                     $information = $check_auth[0];
                     $script .= "$('#profilo').text('". $lettera ."');";
-                    return view('/pag_recipes.profilo', ['script' => $script, 'information' => $information]);
+                    return view('/pag_recipes.profilo', [
+                        'script' => $script,
+                        'information' => $information,
+                        'rightmenu' => $rightmenu
+                    ]);
                 }else{
                     $lettera = strtoupper(substr($information['name'], 0, 1));
                     $script .= "$('#profilo').text('". $lettera ."');";
                     $script .= "$('#email').addClass('needs-validation');";
                     $script .= "alert('Email gia in uso');";
-                    return view('/pag_recipes.profilo', ['script' => $script, 'information' => $information]);
+                    return view('/pag_recipes.profilo', [
+                        'script' => $script,
+                        'information' => $information,
+                        'rightmenu' => $rightmenu
+                    ]);
                 }
             }else{
                 $lettera = strtoupper(substr($information['name'], 0, 1));
@@ -682,18 +940,25 @@ class Home extends Controller
                 $script .= "$('#email').addClass('needs-validation');";
                 $script .= "$('#pw').addClass('needs-validation');";
                 $script .= "$('#conf-pw').addClass('needs-validation');";
-                return view('/pag_recipes.profilo', ['script' => $script, 'information' => $information]);
+                return view('/pag_recipes.profilo', ['script' => $script,
+                    'information' => $information,
+                    'rightmenu' => $rightmenu
+                ]);
             }
         }else{
             $script = "$('#headerloggedpeople').addClass('hidden'); ";
             $script .= "$('#header').show();";
-            return view('pag_recipes.homepage', ['script' => $script]);
+            return view('pag_recipes.homepage', [
+                'script' => $script,
+                'rightmenu' => $rightmenu
+            ]);
         }
 
 
     }
 
     public function profilo_user(){
+        $rightmenu =\Request::get('rightmenu');
         if(Session::get('session_user') != null){
             $check_auth = User::where('id', Session::get('session_user'))->get();
             if(!$check_auth->isEmpty()) {
@@ -702,20 +967,65 @@ class Home extends Controller
                 $script = "$('#headerloggedpeople').removeClass('hidden'); ";
                 $script .= "$('#header').hide();";
                 $script .= "$('#profilo').text('". $lettera ."');";
-                return view('pag_recipes.profilo', ['script' => $script,
-                    'information' => $information
+                $altro = '';
+                if($information->isAdmin == 1){
+                    $altro .= '<button id="crawler" class="btn btn-warning" onclick="crawler()">CRAWLER</button>';
+                }
+                return view('pag_recipes.profilo', [
+                    'crawler' => $altro,
+                    'script' => $script,
+                    'information' => $information,
+                    'rightmenu' => $rightmenu
                 ]);
             }else{
                 Session::forget('session_user');
                 $script = "$('#headerloggedpeople').addClass('hidden'); ";
                 $script .= "$('#header').show();";
-                return view('pag_recipes.homepage', ['script' => $script]);
+                return view('pag_recipes.homepage', [
+                    'script' => $script,
+                    'rightmenu' => $rightmenu
+                ]);
             }
         }else{
             $script = "$('#headerloggedpeople').addClass('hidden'); ";
             $script .= "$('#header').show();";
-            return view('pag_recipes.homepage', ['script' => $script]);
+            return view('pag_recipes.homepage', [
+                'script' => $script,
+                'rightmenu' => $rightmenu
+            ]);
         }
     }
+
+    public function crawler(){
+        $rightmenu =\Request::get('rightmenu');
+        if(Session::get('session_user') != null) {
+            $check_auth = User::where('id', Session::get('session_user'))->get();
+            if (!$check_auth->isEmpty()) {
+                $lettera = strtoupper(substr($check_auth[0]['name'], 0, 1));
+                $script = "$('#headerloggedpeople').removeClass('hidden'); ";
+                $script .= "$('#header').hide();";
+                $script .= "$('#profilo').text('" . $lettera . "');";
+
+            }
+            $vett_cibi = file('cibi_crawler.txt');
+            foreach ($vett_cibi as $key => $cibo){
+                $vett_cibi[$key] = preg_replace("/[\n]/", '',$cibo);
+            }
+
+
+
+            return view('pag_recipes.crawler', [
+                'lista_cibi' => $vett_cibi,
+                'script' => $script,
+                'rightmenu' => $rightmenu
+            ]);
+        }else{
+            return view('pag_recipes.homepage', [
+                'rightmenu' => $rightmenu
+            ]);
+        }
+
+    }
+
 }
 

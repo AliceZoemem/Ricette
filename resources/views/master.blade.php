@@ -7,10 +7,6 @@
                 src: url('{{ public_path('fonts/Cookie/Cookie-Regular.ttf') }}');
             }
             @font-face{
-                font-family: BufferflyKids;
-                src: url('{{ public_path('fonts/Butterfly_Kids/ButterflyKids-Regular.ttf') }}');
-            }
-            @font-face{
                 font-family: IndieFlower;
                 src: url('{{ public_path('fonts/Indie_Flower/IndieFlower.ttf') }}');
             }
@@ -41,7 +37,6 @@
                 url('{{ public_path('fonts/Sunflower/Sunflower-Light.ttf')}}');
             }
         </style>
-
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no">
@@ -62,6 +57,9 @@
         <script src="{{ asset('/js/jquery-1.12.4.js') }}"></script>
         {{--<link rel="stylesheet" href="/resources/demos/style.css">--}}
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <link rel="icon" type="img/png" href="/img/logo2.png">
+        {{--icon title bar--}}
+        {{--<link rel="shortcut icon" href="your_image_path_and_name.ico" />--}}
         <title>@yield('title')</title>
     </head>
 
@@ -70,32 +68,33 @@
             @include('pag_recipes.header')
         </div>
 
-        <div class="menulateraledestro">
+        <nav id="rightmenu" class="rightm navbar navbar-expand-lg">
+            {{--<button id="btn_cake" class="navbar-toggler right-menu" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="navbar right">--}}
+            {{--</button>--}}
 
-            <?php
-                try{
-                    $script = '';
-                    foreach ($rightmenu as $ricetta){
-                        $script .= '<li class="nav-item">';
-                        $script .= '<a href="/ricetta/'.$ricetta->id.'">';
-                        $script .= '<p>' .$ricetta->name_recipe. '</p>';
-                        $script .= '<img class="radom_recipe" src="'.$ricetta->recipe_img.'">';
-                        $script .= '</a>';
-                        $script .= '</li>';
+            {{--<div class="collapse navbar-collapse" id="navbarNav">--}}
+            <div class="" id="navbarNav">
+                <ul id="menu" class="navbar-nav mr-auto">
+                    <?php
+                    try{
+                        $script = '';
+                        foreach ($rightmenu as $ricetta){
+                            $script .= '<li class="nav-item">';
+                            $script .= '<a href="/ricetta/'.$ricetta->id.'">';
+                            $script .= '<p>' .$ricetta->name_recipe. '</p>';
+                            $script .= '<img class="radom_recipe" src="'.$ricetta->recipe_img.'">';
+                            $script .= '</a>';
+                            $script .= '</li>';
 
+                        }
+                        echo ($script);
+                    }catch(Exception $ex){
                     }
-//                    <?php
-//    use \App\Http\Middleware\Rightmenu;
-                    echo ($script);
-                }catch(Exception $ex){
-                }
-            ?>
+                    ?>
+                </ul>
+            </div>
+        </nav>
 
-            {{--@include('pag_recipes.rightmenu')
-            {{--route('pag_recipes.rightmenu')--}}
-            {{--@yield('rightmenu')--}}
-        </div>
-        {{--<img src="/img/k.yA==">--}}
         <div class="content">
             @yield('content')
         </div>
@@ -107,10 +106,11 @@
         </footer>
     </body>
     <script>
+
         window.onresize = function() {
             if ($(window).width() < 990) {
                 $("#profilo").addClass('collapse');
-            } else {
+            } else{
                 $('#profilo').removeClass('collapse');
             }
         }
@@ -126,7 +126,9 @@
             }else{
                 $('#profilo').removeClass('collapse');
             }
+
         } );
+
     </script>
     @yield('page-js-script')
 </html>

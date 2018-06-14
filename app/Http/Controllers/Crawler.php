@@ -11,43 +11,10 @@
     class Crawler extends Controller
     {
         public function crawler(){
-            $vett_cibi=array(
-                'pasta',
-                'anatra',
-                'pizza',
-                'insalata',
-                'pollo',
-                'riso',
-                'torta',
-                'zuppa',
-                'verdura',
-                'pesce',
-                'cavallo',
-                'sushi',
-                'formaggio',
-                'patate',
-                'spinaci',
-                'porchetta',
-                'spigola',
-                'tonno',
-                'salsiccia',
-                'prosciutto',
-                'pomodori',
-                'gamberetti',
-                'limone',
-                'ceci',
-                'legumi',
-                'farina',
-                'minestra',
-                'fragole' ,
-                'cocco',
-                'frutta',
-                'gelato',
-                'mousse',
-                'vegano',
-                'maiale',
-                'anatra'
-            );
+            $vett_cibi = file('cibi_crawler.txt');
+            foreach ($vett_cibi as $key => $cibo){
+                $vett_cibi[$key] = preg_replace("/[\n]/", '',$cibo);
+            }
             $num_ricette_old = Recipe::count();
             $this->crawler_buonissimo($vett_cibi);
             $this->crawler_giallozafferano($vett_cibi);

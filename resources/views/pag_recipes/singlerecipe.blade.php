@@ -2,7 +2,7 @@
 @section('title','Ricetta - Tasty&Yummy')
 @section('content')
     <div class="container">
-        <a href="/all"><div id="back" title="back"></div></a>
+        <a href="javascript:history.go(-1)"><div id="back" title="back"></div></a>
         <?php
             try{
                 $echo =
@@ -26,8 +26,6 @@
                     '<p>'.$ricetta->description.'</p></div>'.
                     ' </br> </br>';
                 echo $echo;
-                ;
-
             }catch (Exception $ex){
 
             }
