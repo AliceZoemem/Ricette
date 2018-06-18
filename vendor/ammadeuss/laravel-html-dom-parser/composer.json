@@ -3,11 +3,13 @@
     "description": "Laravel wrapper for the PHP Simple HTML DOM Parser package",
     "keywords": [
         "dom parser",
+        "html dom parser",
         "laravel"
     ],
     "require": {
-        "sunra/php-simple-html-dom-parser": "^1.5",
-        "illuminate/support": "5.4.*"
+    	"php": ">=5.6",
+        "illuminate/support": "^5.2",
+        "sunra/php-simple-html-dom-parser": "^1.5"
     },
     "homepage": "https://github.com/ammadeuss/html-dom-parser",
     "license": "MIT",
@@ -19,5 +21,15 @@
     ],
     "autoload": {
         "psr-4": { "Ammadeuss\\LaravelHtmlDomParser\\": "" }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Ammadeuss\\LaravelHtmlDomParser\\ServiceProvider"
+            ],
+            "aliases": {
+                "HTMLDomParser": "Ammadeuss\\LaravelHtmlDomParser\\Facade"
+            }
+        }
     }
 }

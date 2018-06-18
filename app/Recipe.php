@@ -11,8 +11,7 @@ class Recipe extends Model
 
     public function ingredients()
     {
-        return $this->belongsToMany('App\Ingredient')->withPivot('ingredient_id', 'amount');
-;
+        return $this->belongsToMany('App\Ingredient')->withPivot('ingredient_id', 'amount')->withTimestamps();;
     }
 
     public function ingredients_id($id = null){
@@ -20,6 +19,18 @@ class Recipe extends Model
             return $this->belongsToMany('App\Ingredient');
         }
     }
+
+    public function users()
+    {
+        return $this->belongsToMany('App\User', 'users_recipes')->withPivot('user_id')->withTimestamps();;
+    }
+
+    public function users_id($id = null){
+        if($id != null){
+            return $this->belongsToMany('App\User', 'users_recipes');
+        }
+    }
+
 
 
 }

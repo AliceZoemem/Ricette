@@ -12,19 +12,26 @@
                 margin-top: 0%;
             }
         }
+
     </style>
     <script>
         $(document).ready(function () {
             $('#rightmenu').hide();
+            $('#btn_cake').hide();
+            $('.rightmenu_colonna').hide();
             $('#header').hide();
         });
+        window.onresize = function() {
+            $('#rightmenu').hide();
+            $('.rightmenu_colonna').hide();
+        }
     </script>
     <input id="token_invisible" type="hidden" value="{{ csrf_token() }}">
     <div class="py-4 text-center">
         <img class="logo" src="/img/logo2.png" alt="" width="72" height="72">
         {{--<img class="logo" src="/img/l13.jpg" alt="" width="190" height="190">--}}
         <h2>Registrati</h2>
-        <p class="lead">Registrati anche tu. Entra nella community di Il mio frigo. Enjoy with food!</p>
+        <p class="lead">Registrati anche tu. Entra nella community di Tasty&Yummy. Enjoy with food!</p>
     </div>
 
     <form id="MainForm" class="main-form" action="/trysignup" method="post">

@@ -4,21 +4,11 @@
 
 @section('content')
     <style>
-        /*#main{*/
-            /*background-color: #f1f2f2;*/
-            /*background-position: 0 0;*/
-            /*background-repeat: no-repeat;*/
-            /*background-size: cover;*/
-            /*height: 25.75rem;*/
-            /*line-height: 1;*/
-            /*margin: 0 0 1rem;*/
-            /*position: relative;*/
-            /*text-align: center;*/
-        /*}*/
 
     </style>
     <form class="main-form" action="/add_research" method="post">
         {{ csrf_field() }}
+        <h1>Inscrisci degli ingredienti</h1>
         {{--<input id="token_invisible" type="hidden" value="{{ csrf_token() }}">--}}
         <input type="text" class="lower form-control" id="ingredienti" name="ingredienti" placeholder="Aggiungi un ingrediente..."/>
         <button type="submit" class="btn btn-warning" onclick="aggiungi()" id="button_add">AGGIUNGI</button>

@@ -1,7 +1,4 @@
 pasta
-anatra
-pizza
-insalata
 pollo
 riso
 torta
@@ -32,4 +29,13 @@ gelato
 mousse
 vegano
 maiale
-anatra
+anice
+antipasti
+fichi
+arancia
+melanzane
+taralli
+radicchio
+caffe
+insalata
+cipolle

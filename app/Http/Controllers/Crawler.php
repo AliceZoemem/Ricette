@@ -3,25 +3,63 @@
 
     use App\Ingredient;
     use App\Recipe;
+    use App\User;
     use function foo\func;
     use Illuminate\Support\Facades\DB;
     use Goutte;
     use Illuminate\Validation\Rules\In;
+    use Illuminate\Support\Facades\Session;
 
     class Crawler extends Controller
     {
         public function crawler(){
-            $vett_cibi = file('cibi_crawler.txt');
-            foreach ($vett_cibi as $key => $cibo){
-                $vett_cibi[$key] = preg_replace("/[\n]/", '',$cibo);
+            $rightmenu =\Request::get('rightmenu');
+            $script = '';
+            if (Session::get('session_user') != null) {
+                $check_auth = User::where('id', Session::get('session_user'))->get();
+                if (!$check_auth->isEmpty()) {
+                    $lettera = strtoupper(substr($check_auth[0]['name'], 0, 1));
+                    $script .= "$('#headerloggedpeople').removeClass('hidden'); ";
+                    $script .= "$('#header').hide();";
+                    $script .= "$('#profilo').text('" . $lettera . "');";
+                } else {
+                    Session::forget('session_user');
+                    $script .= "$('#headerloggedpeople').addClass('hidden'); ";
+                    $script .= "$('#header').show();";
+                    return view('pag_recipes.homepage', [
+                        'rightmenu' => $rightmenu,
+                        'script' => $script]);
+                }
+            } else {
+                $script .= "$('#headerloggedpeople').addClass('hidden'); ";
+                $script .= "$('#header').show();";
+                return view('pag_recipes.homepage', [
+                    'rightmenu' => $rightmenu,
+                    'script' => $script]);
             }
-            $num_ricette_old = Recipe::count();
-            $this->crawler_buonissimo($vett_cibi);
-            $this->crawler_giallozafferano($vett_cibi);
-            $num_ricette_new = Recipe::count();
-            $ricette_ottenute = $num_ricette_new - $num_ricette_old;
-            echo 'Success for '. $ricette_ottenute  .' new different recipes';
-            //calcolo quante ricette nuove ho ottenuto
+            if($check_auth[0]['isAdmin'] == 1){
+                $vett_cibi = file('cibi_crawler.txt');
+                foreach ($vett_cibi as $key => $cibo){
+                    $vett_cibi[$key] = preg_replace("/[\n]/", '',$cibo);
+                }
+                $num_ricette_old = Recipe::count();
+                $this->crawler_buonissimo($vett_cibi);
+                $this->crawler_giallozafferano($vett_cibi);
+                $num_ricette_new = Recipe::count();
+                $ricette_ottenute = $num_ricette_new - $num_ricette_old;
+
+                $info = 'Success for '. $ricette_ottenute  .' new different recipes';
+                return view('pag_recipes.crawler', [
+                    'lista_cibi' => $vett_cibi,
+                    'info' => $info,
+                    'rightmenu' => $rightmenu,
+                    'script' => $script]);
+            }else{
+                return view('pag_recipes.homepage', [
+                    'rightmenu' => $rightmenu,
+                    'script' => $script]);
+            }
+
         }
 
         function crawler_buonissimo($vett_cibi){

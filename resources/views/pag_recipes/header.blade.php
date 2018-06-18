@@ -27,10 +27,12 @@
 
 <nav id="headerloggedpeople" class="hidden navbar navbar-expand-lg navbar-light container circleBehind">
 
-    <img src="/img/user3.png"  class="navbar-toggler utente" data-toggle="collapse" data-target="#profilo" aria-controls="profilo" aria-expanded="false" aria-label="Profile">
-
+    {{--<img src="/img/user6.png"  class="navbar-toggler utente" data-toggle="collapse" data-target="#profilo" aria-controls="profilo" aria-expanded="false" aria-label="Profile">--}}
+    <a href="/profilo" class="user_hidden hidden a_user" >
+        <img src="/img/user6.png" class="user_hidden navbar-toggler utente hidden">
+    </a>
+    {{--<a href="/profilo" id="profilo" class="left" ></a>--}}
     <a href="/profilo" id="profilo" class="left" ></a>
-    {{--<img class="logo-responsive" src="/img/logo2.png">--}}
     <button class="navbar-toggler menu" type="button" data-toggle="collapse" data-target="#navbarauthSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -53,21 +55,4 @@
         </ul>
     </div>
 </nav>
-
-{{--<nav  id="headerloggedpeople" class="hidden navbar navbar-expand-lg navbar-light bg-light container circleBehind ">--}}
-    {{--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">--}}
-        {{--<span class="user-thumb"><a href="profilo" id="profilo" class="left" ></a></span>--}}
-    {{--</button>--}}
-    {{--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">--}}
-        {{--<span class="navbar-toggler-icon"></span>--}}
-    {{--</button>--}}
-    {{--<div class="collapse navbar-collapse" id="navbarSupportedContent">--}}
-        {{--<p>Profilo</p>--}}
-        {{--<a href="profilo" id="profilo" class="left" ></a>--}}
-        {{--<a href="/">Homepage</a>--}}
-        {{--<a href="index">Cerca Ricette</a>--}}
-        {{--<a href="all">Tutte le ricette</a>--}}
-        {{--<a href="logout">Logout</a>--}}
-    {{--</div>--}}
-{{--</nav>--}}
 

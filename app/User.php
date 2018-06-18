@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
 
-
+    protected $table='users';
     //manca surname
     protected $fillable = [
         'name','surname', 'email', 'password','isAdmin'
@@ -29,4 +29,12 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function recipes()
+    {
+        //va in ordine alfabetico quindi prima veniva recipes_users
+        return $this->belongsToMany('App\Recipe', 'users_recipes')->withPivot('recipe_id')->withTimestamps();;
+    }
+
+
 }

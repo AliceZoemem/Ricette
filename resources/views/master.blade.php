@@ -30,12 +30,6 @@
                 url('{{ public_path('fonts/Roboto/RobotoSlab-Light.ttf')}}'),
                 url('{{ public_path('fonts/Roboto/RobotoSlab-Thin.ttf')}}');
             }
-            @font-face {
-                font-family: SunFlower;
-                src: url('{{ public_path('fonts/Sunflower/Sunflower-Medium.ttf')}}'),
-                url('{{ public_path('fonts/Sunflower/Sunflower-Bold.ttf')}}'),
-                url('{{ public_path('fonts/Sunflower/Sunflower-Light.ttf')}}');
-            }
         </style>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -55,11 +49,8 @@
         <script src="{{ asset('/js/jquery.min.js') }}"></script>
         <script src="{{ asset('/js/Ricette_js.js') }}"></script>
         <script src="{{ asset('/js/jquery-1.12.4.js') }}"></script>
-        {{--<link rel="stylesheet" href="/resources/demos/style.css">--}}
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <link rel="icon" type="img/png" href="/img/logo2.png">
-        {{--icon title bar--}}
-        {{--<link rel="shortcut icon" href="your_image_path_and_name.ico" />--}}
         <title>@yield('title')</title>
     </head>
 
@@ -68,7 +59,9 @@
             @include('pag_recipes.header')
         </div>
 
-        <nav id="rightmenu" class="rightm navbar navbar-expand-lg">
+        <button id="btn_cake" class="navbar-toggler right-menu" type="button" onclick="rightmenu()">
+        </button>
+        <nav id="rightmenu" class="rightm navbar navbar-expand-lg old">
             {{--<button id="btn_cake" class="navbar-toggler right-menu" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="navbar right">--}}
             {{--</button>--}}
 
@@ -106,28 +99,84 @@
         </footer>
     </body>
     <script>
-
         window.onresize = function() {
             if ($(window).width() < 990) {
-                $("#profilo").addClass('collapse');
+                if ($(window).width() < 780) {
+                    $("#rightmenu").hide();
+                    $("#rightmenu").addClass('rightmenu_colonna');
+                    $("#menu").addClass('ul_colonna');
+                    if(rightmenu_visible == 0){
+                        $("#rightmenu").show();
+                        rightmenu_visible = 1;
+                    }else{
+                        $("#rightmenu").hide();
+                        rightmenu_visible = 0;
+                    }
+                }else{
+                    $("#rightmenu").show();
+                    $("#rightmenu").removeClass('rightmenu_colonna');
+                    $("#menu").removeClass('ul_colonna');
+                    $("#profilo").addClass('collapse');
+                    $(".user_hidden").removeClass('hidden');
+                    $("#rightmenu").removeClass('old');
+                }
             } else{
+                $("#rightmenu").addClass('old');
                 $('#profilo').removeClass('collapse');
+                $(".user_hidden").addClass('hidden');
             }
         }
+        function rightmenu(){
+            $("#rightmenu").hide();
+            $("#rightmenu").addClass('rightmenu_colonna');
+            $("#menu").addClass('ul_colonna');
+            if(rightmenu_visible == 0){
+                $("#rightmenu").show();
+                rightmenu_visible = 1;
+            }else{
+                $("#rightmenu").hide();
+                rightmenu_visible = 0;
+            }
+        }
+
         function spinner(){
             setTimeout(function() {
                 $('#gif').hide();
             }, 3000);
         }
+
         $(document).ready(function() {
-            if($(window).width() < 1090)
+            if($(window).width() < 990)
             {
-                $("#profilo").addClass('collapse');
+                if ($(window).width() < 780) {
+                    $("#rightmenu").removeClass('old');
+                    $("#rightmenu").addClass('rightmenu_colonna');
+                    $("#menu").addClass('ul_colonna');
+                    $("#rightmenu").hide();
+                    if (rightmenu_visible == 0) {
+                        $("#rightmenu").show();
+                        rightmenu_visible = 1;
+                    } else {
+                        $("#rightmenu").hide();
+                        rightmenu_visible = 0;
+                    }
+                }else{
+                    $("#rightmenu").show();
+                    $("#rightmenu").removeClass('rightmenu_colonna');
+                    $("#menu").removeClass('ul_colonna');
+                    $("#rightmenu").removeClass('old');
+                    $(".user_hidden").removeClass('hidden');
+                    $("#profilo").addClass('collapse');
+                }
             }else{
+                $(".user_hidden").addClass('hidden');
                 $('#profilo').removeClass('collapse');
+                $("#rightmenu").addClass('old');
             }
 
         } );
+
+
 
     </script>
     @yield('page-js-script')

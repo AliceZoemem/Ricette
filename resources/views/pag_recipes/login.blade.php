@@ -2,8 +2,16 @@
 @section('title','Login - Tasty&Yummy')
 @section('content')
     <script>
-        $('#rightmenu').hide();
-        $('#header').hide();
+        $(document).ready(function () {
+            $('#rightmenu').hide();
+            $('#btn_cake').hide();
+            $('.rightmenu_colonna').hide();
+            $('#header').hide();
+        });
+        window.onresize = function() {
+            $('#rightmenu').hide();
+            $('.rightmenu_colonna').hide();
+        }
     </script>
 
     <style>
@@ -41,7 +49,7 @@
     <div class="py-4 text-center">
         <img class="logo" src="/img/logo2.png" alt="" width="72" height="72">
         <h2>Accedi</h2>
-        <p class="lead">Accedi anche tu. Entra nella community di Il mio frigo. Enjoy with food!</p>
+        <p class="lead">Accedi anche tu. Entra nella community di Tasty&Yummy. Enjoy with food!</p>
     </div>
 
     <form method="POST" action="/trylog" class="main-form">

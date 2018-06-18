@@ -17,23 +17,24 @@
         .char11 {transform: rotate(75deg);}
 
     </style>
-
+    <br>
+    <img id="gif" src="/img/p.gif">
     <section class="corpo_sugg">
-        <img id="gif" src="/img/p.gif">
 
-        <h1>
-            <span class="char1">T</span>
-            <span class="char2">a</span>
-            <span class="char3">s</span>
-            <span class="char4">t</span>
-            <span class="char5">y</span>
-            <span class="char6">&</span>
-            <span class="char7">Y</span>
-            <span class="char8">u</span>
-            <span class="char9">m</span>
-            <span class="char10">m</span>
-            <span class="char11">y</span>
-        </h1>
+        {{--<h1>--}}
+            {{--<span class="char1">T</span>--}}
+            {{--<span class="char2">a</span>--}}
+            {{--<span class="char3">s</span>--}}
+            {{--<span class="char4">t</span>--}}
+            {{--<span class="char5">y</span>--}}
+            {{--<span class="char6">&</span>--}}
+            {{--<span class="char7">Y</span>--}}
+            {{--<span class="char8">u</span>--}}
+            {{--<span class="char9">m</span>--}}
+            {{--<span class="char10">m</span>--}}
+            {{--<span class="char11">y</span>--}}
+        {{--</h1>--}}
+        <h1 id="title">Tasty&Yummy</h1>
         <img id="logohome" src="/img/logo2.png">
         <h2 class="subtitle">Chose your meal and enjoy cooking</h2>
     </section>

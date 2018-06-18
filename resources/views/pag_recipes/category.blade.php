@@ -4,6 +4,7 @@
 
 <div id="body">
     <form class="main-form" action="/cerca_ricetta" method="post">
+        <h1>FILTRI</h1>
         <input id="ricerca" type="text" name="ricerca" class="lower form-control" placeholder="Ricerca..."/>
         <button id="search" class="btn btn-warning">
             <a class="text-muted">
@@ -13,7 +14,7 @@
         {{ csrf_field() }}
     </form>
     <form class="main-form form-width filter" action="/filter" method="post">
-        <input id="tipo" type="text" name="tipo" class="lower form-control filter" placeholder="Tipo"/>
+        <input id="tipo" type="text" name="tipo" class="lower form-control filter" placeholder="Categoria"/>
         <input id="tempo_cottura" type="text" name="tempo_cottura" class="lower form-control filter" placeholder="Tempo cottura"/>
         <input id="tempo_preparazione" type="text" name="tempo_preparazione" class="lower form-control filter" placeholder="Tempo preparazione"/>
         <input id="dosi_persone" type="text" name="dosi_persone" class="lower form-control filter" placeholder="Dosi"/>
@@ -44,7 +45,7 @@
                     }
                     echo '<a class="category" href=categoria/'.$singola_ricetta['category'].'>';
                     echo "<div class='col-sm colonna_categoria'>";
-                    echo "<h1>";
+                    echo "<h1 class='h1_categoria'>";
                     echo $singola_ricetta['category'];
                     echo "</h1>";
                     echo "</div>";

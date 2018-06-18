@@ -12,9 +12,11 @@
 */
 use Illuminate\Database\Eloquent\Model;
 
-Route::get('crawler', 'Crawler@crawler');
+Route::get('crawler', 'Crawler@crawler')->middleware('rightmenu');
 
 Route::post('manage_crawler', 'Home@crawler')->middleware('rightmenu');
+
+Route::post('add_category', 'Home@add_category')->middleware('rightmenu');
 
 Route::get('/', 'Home@home')->middleware('rightmenu');
 
@@ -50,6 +52,10 @@ Route::post('lista', 'Home@lista')->middleware('rightmenu');
 
 Route::get('remove/{number}', 'Home@remove')->where('number', '[0-9]+')->middleware('rightmenu');
 
+Route::get('delete_category/{number}', 'Home@delete_category')->where('number', '[0-9]+')->middleware('rightmenu');
+
+Route::get('add_bookmark/{number}', 'Home@add_bookmark')->where('number', '[0-9]+')->middleware('rightmenu');
+
 Route::get('profilo', 'Home@profilo_user')->middleware('rightmenu');
 
 Route::get('logout','Home@logout')->middleware('rightmenu');
@@ -60,7 +66,10 @@ Route::get('/{login}', 'Home@see_auth');
 
 Route::post('give_ingredient' , 'Home@giveingredient')->middleware('rightmenu');
 
-Route::get('ricetta/{number}', 'Home@stamponerecipe')->where('number', '[0-9]+')->middleware('rightmenu');
+Route::post('ricettario' , 'Home@ricettario')->middleware('rightmenu');
+
+Route::get('ricetta/{number}', 'Home@stamponerecipe')->where('number', '[0-9]+')->middleware('rightmenu')->name('ricetta');
+
 Route::get('categoria/{value}', 'Home@choose_category')->middleware('rightmenu');
 
 

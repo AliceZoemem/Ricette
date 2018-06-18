@@ -5,9 +5,13 @@
         <a href="javascript:history.go(-1)"><div id="back" title="back"></div></a>
         <?php
             try{
-                $echo =
-                    '<div id="single_top"><h1>'.$ricetta->name_recipe.'</h1>'.
-                    '<img src="'.$ricetta->recipe_img. '" alt="'.$ricetta->name_recipe.'" class="single_image">'.
+                $echo = '<div id="single_top"><h1>'.$ricetta->name_recipe.'</h1>';
+                try{
+                    $echo .= $plus;
+                }catch (Exception $ex){
+
+                }
+                $echo .= '<img src="'.$ricetta->recipe_img. '" alt="'.$ricetta->name_recipe.'" class="single_image">'.
                     '<ul class="informazioni">'.
                     '<li> difficolta: '.$ricetta->difficulty.'</li>'.
                     '<li> dosi: '.$ricetta->doses_per_person.'</li>'.
