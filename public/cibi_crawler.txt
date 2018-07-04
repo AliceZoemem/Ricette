@@ -38,4 +38,8 @@ taralli
 radicchio
 caffe
 insalata
+
+
 cipolle
+seitan
+seppie

@@ -30,6 +30,45 @@
                 url('{{ public_path('fonts/Roboto/RobotoSlab-Light.ttf')}}'),
                 url('{{ public_path('fonts/Roboto/RobotoSlab-Thin.ttf')}}');
             }
+
+            .sidenav {
+                height: 100%;
+                width: 0;
+                position: fixed;
+                z-index: 2;
+                top: 0;
+                right: 0;
+                background-color: rgba(250, 250, 250, 0.8);;
+                overflow-x: hidden;
+                transition: 0.5s;
+                padding-top: 12%;
+            }
+            .sidenav a {
+                padding: 8px 8px 8px 32px;
+                text-decoration: none;
+                font-size: 25px;
+                color: #818181;
+                display: block;
+                transition: 0.3s;
+            }
+            .sidenav a:hover {
+                color: #f1f1f1;
+            }
+            .sidenav .closebtn {
+                position: absolute;
+                top: 0;
+                right: 5%;
+                font-size: 36px;
+                margin-left: 10%;
+            }
+            @media screen and (max-height: 450px) {
+                .sidenav {padding-top: 3%;}
+                .sidenav a {font-size: 18px;}
+            }
+            @media screen and (max-width: 550px) {
+                .sidenav {padding-top: 3%;}
+                .sidenav a {font-size: 18px;}
+            }
         </style>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -55,38 +94,61 @@
     </head>
 
     <body onload="spinner()" class="gifspinner">
-        <div id="topmenu" class="container">
-            @include('pag_recipes.header')
-        </div>
-
-        <button id="btn_cake" class="navbar-toggler right-menu" type="button" onclick="rightmenu()">
-        </button>
-        <nav id="rightmenu" class="rightm navbar navbar-expand-lg old">
-            {{--<button id="btn_cake" class="navbar-toggler right-menu" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="navbar right">--}}
-            {{--</button>--}}
-
-            {{--<div class="collapse navbar-collapse" id="navbarNav">--}}
-            <div class="" id="navbarNav">
-                <ul id="menu" class="navbar-nav mr-auto">
-                    <?php
-                    try{
-                        $script = '';
-                        foreach ($rightmenu as $ricetta){
-                            $script .= '<li class="nav-item">';
-                            $script .= '<a href="/ricetta/'.$ricetta->id.'">';
-                            $script .= '<p>' .$ricetta->name_recipe. '</p>';
-                            $script .= '<img class="radom_recipe" src="'.$ricetta->recipe_img.'">';
-                            $script .= '</a>';
-                            $script .= '</li>';
-
-                        }
-                        echo ($script);
-                    }catch(Exception $ex){
-                    }
-                    ?>
-                </ul>
+        <div id="menu-fixed">
+            <div id="topmenu" class="container">
+                @include('pag_recipes.header')
             </div>
-        </nav>
+           {{--QUA INIZIA--}}
+            <div id="mySidenav" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                <div class="" id="">
+                    <ul id="" class="">
+                        <?php
+                        try{
+                            $script = '';
+                            foreach ($rightmenu as $ricetta){
+                                $script .= '<li class="nav-item right-item">';
+                                $script .= '<a href="/ricetta/'.$ricetta->id.'">';
+                                $script .= '<p>' .$ricetta->name_recipe. '</p>';
+                                $script .= '<img class="radom_recipe" src="'.$ricetta->recipe_img.'">';
+                                $script .= '</a>';
+                                $script .= '</li>';
+
+                            }
+                            echo ($script);
+                        }catch(Exception $ex){
+                        }
+                        ?>
+                    </ul>
+                </div>
+            </div>
+
+            {{--<button id="btn_cake" class="navbar-toggler right-menu" type="button" onclick="rightmenu()">--}}
+            <button id="btn_cake" class="navbar-toggler right-menu" type="button" onclick="openNav()">
+            </button>
+            <nav id="rightmenu" class="rightm navbar navbar-expand-lg old">
+                <div class="" id="navbarNav">
+                    <ul id="menu" class="navbar-nav mr-auto">
+                        <?php
+                        try{
+                            $script = '';
+                            foreach ($rightmenu as $ricetta){
+                                $script .= '<li class="nav-item ">';
+                                $script .= '<a href="/ricetta/'.$ricetta->id.'">';
+                                $script .= '<p>' .$ricetta->name_recipe. '</p>';
+                                $script .= '<img class="radom_recipe" src="'.$ricetta->recipe_img.'">';
+                                $script .= '</a>';
+                                $script .= '</li>';
+
+                            }
+                            echo ($script);
+                        }catch(Exception $ex){
+                        }
+                        ?>
+                    </ul>
+                </div>
+            </nav>
+        </div>
 
         <div class="content">
             @yield('content')
@@ -99,30 +161,36 @@
         </footer>
     </body>
     <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "40%";
+            if ($(window).width() < 370) {
+                document.getElementById("mySidenav").style.width = "60%";
+            }
+            if ($(window).width() > 780) {
+                document.getElementById("mySidenav").style.width = "0%";
+            }
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0%";
+        }
         window.onresize = function() {
             if ($(window).width() < 990) {
                 if ($(window).width() < 780) {
                     $("#rightmenu").hide();
                     $("#rightmenu").addClass('rightmenu_colonna');
                     $("#menu").addClass('ul_colonna');
-                    if(rightmenu_visible == 0){
-                        $("#rightmenu").show();
-                        rightmenu_visible = 1;
-                    }else{
-                        $("#rightmenu").hide();
-                        rightmenu_visible = 0;
-                    }
+//
                 }else{
                     $("#rightmenu").show();
                     $("#rightmenu").removeClass('rightmenu_colonna');
                     $("#menu").removeClass('ul_colonna');
-                    $("#profilo").addClass('collapse');
                     $(".user_hidden").removeClass('hidden');
                     $("#rightmenu").removeClass('old');
                 }
             } else{
+                $('#mySidenav').width('0%');
                 $("#rightmenu").addClass('old');
-                $('#profilo').removeClass('collapse');
                 $(".user_hidden").addClass('hidden');
             }
         }
@@ -153,24 +221,16 @@
                     $("#rightmenu").addClass('rightmenu_colonna');
                     $("#menu").addClass('ul_colonna');
                     $("#rightmenu").hide();
-                    if (rightmenu_visible == 0) {
-                        $("#rightmenu").show();
-                        rightmenu_visible = 1;
-                    } else {
-                        $("#rightmenu").hide();
-                        rightmenu_visible = 0;
-                    }
                 }else{
                     $("#rightmenu").show();
                     $("#rightmenu").removeClass('rightmenu_colonna');
                     $("#menu").removeClass('ul_colonna');
                     $("#rightmenu").removeClass('old');
                     $(".user_hidden").removeClass('hidden');
-                    $("#profilo").addClass('collapse');
                 }
             }else{
+                $('#mySidenav').width('0%');
                 $(".user_hidden").addClass('hidden');
-                $('#profilo').removeClass('collapse');
                 $("#rightmenu").addClass('old');
             }
 

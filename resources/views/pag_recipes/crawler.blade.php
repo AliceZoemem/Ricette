@@ -17,35 +17,39 @@
         try{
             $conta = 0;
             foreach ($lista_cibi as $key => $cibo){
-               if($cibo != ""){
-                   if($key % 4 == 0){
+                if($cibo != ""){
+                    if($conta % 4 == 0){
                        echo '<div class="row">';
-                   }
-                   echo '<div class="col-sm inherit">';
-                   echo '<p>'.$cibo .'</p>';
-                   echo '<a href="/delete_category/' . $key . '">';
-                   echo '<button id="category'.$key. '" name="category" class="btn btn-white" type="submit" style="font-size: 13px">x</button>';
-                   echo '</a>';
-                   echo '</div>';
-                   $conta ++;
-                   if($key % 4 == 3){
+                    }
+                    echo '<div class="col-sm inherit">';
+                    echo '<p>'.$cibo .'</p>';
+                    echo '<a href="/delete_category/' . $key . '">';
+                    echo '<button id="category'.$key. '" name="category" class="btn btn-white" type="submit" style="font-size: 13px">x</button>';
+                    echo '</a>';
+                    echo '</div>';
+                    if($conta % 4 == 3){
                        echo '</div>';
-                   }
-               }
+                    }
+                    $conta ++;
+                }
             }
             if($conta % 4 == 3){
-               echo '<div class="col-sm inherit"></div></div>';
-            }elseif($conta % 4 == 2){
-               echo '<div class="col-sm inherit"></div>';
-               echo '<div class="col-sm inherit"></div>';
-               echo '</div>';
+                echo '<div class="col-sm inherit"></div></div>';
             }
-            elseif($conta % 4 == 1){
-               echo '<div class="col-sm inherit"></div>';
-               echo '<div class="col-sm inherit"></div>';
-               echo '<div class="col-sm inherit"></div>';
-               echo '</div>';
+            if($conta % 4 == 2){
+                dd($conta % 4);
+                echo '<div class="col-sm inherit"></div>';
+                echo '<div class="col-sm inherit"></div>';
+                echo '</div>';
             }
+            if($conta % 4 == 1){
+                echo '<div class="col-sm inherit"></div>';
+                echo '<div class="col-sm inherit"></div>';
+                echo '<div class="col-sm inherit"></div>';
+                echo '</div>';
+            }
+
+
         }catch(Exception $ex){
         }
     ?>

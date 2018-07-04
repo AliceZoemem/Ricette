@@ -28,9 +28,9 @@
 <nav id="headerloggedpeople" class="hidden navbar navbar-expand-lg navbar-light container circleBehind">
 
     {{--<img src="/img/user6.png"  class="navbar-toggler utente" data-toggle="collapse" data-target="#profilo" aria-controls="profilo" aria-expanded="false" aria-label="Profile">--}}
-    <a href="/profilo" class="user_hidden hidden a_user" >
-        <img src="/img/user6.png" class="user_hidden navbar-toggler utente hidden">
-    </a>
+    {{--<a href="/profilo" class="user_hidden hidden a_user" >--}}
+        {{--<img src="/img/user6.png" class="user_hidden navbar-toggler utente hidden">--}}
+    {{--</a>--}}
     {{--<a href="/profilo" id="profilo" class="left" ></a>--}}
     <a href="/profilo" id="profilo" class="left" ></a>
     <button class="navbar-toggler menu" type="button" data-toggle="collapse" data-target="#navbarauthSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

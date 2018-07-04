@@ -36,7 +36,7 @@
         {{--</h1>--}}
         <h1 id="title">Tasty&Yummy</h1>
         <img id="logohome" src="/img/logo2.png">
-        <h2 class="subtitle">Chose your meal and enjoy cooking</h2>
+        <h2 class="subtitle">Choose your meal and enjoy cooking</h2>
     </section>
 
     <script>
